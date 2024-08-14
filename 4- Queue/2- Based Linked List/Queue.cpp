@@ -1,7 +1,7 @@
 #include "Queue.h"
 #include <cassert>
 #include <iostream>
-using namespace std;
+using namespace std ;
 
 template<class dataType>
 Queue<dataType>::Queue() {}
