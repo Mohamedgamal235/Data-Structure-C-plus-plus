@@ -11,7 +11,8 @@ int main() {
     cout << st.infixToPostfix("a+b*(c^d-e)^(f+G*h)-i") << '\n' ;
     cout << "================\n" ;
 
-    cout << st.postfixEvaluation("134*+4+") << '\n' ;
+    cout << st.postfixEvaluation("82/") << '\n' ;
+    cout << st.infixToPrefix("1+4*3-5") << '\n' ;
 
 
     return 0;

@@ -118,7 +118,7 @@ double Stack<dataType> :: result(double x , double y , char c ) {
 
 template<class dataType>
 double Stack<dataType> :: postfixEvaluation(string postfix) {
-    Stack<int> evaluation ;
+    Stack<double> evaluation ;
     for (auto c : postfix) {
         if (isdigit(c))
             evaluation.push(c-'0') ;
@@ -128,8 +128,8 @@ double Stack<dataType> :: postfixEvaluation(string postfix) {
 
             double y = evaluation.peek() ;
             evaluation.pop() ;
-
-            double val = result(x , y , c ) ;
+            // y , x not x , y Bcz divid and power
+            double val = result(y , x , c ) ;
             evaluation.push(val) ;
         }
     }
@@ -137,4 +137,9 @@ double Stack<dataType> :: postfixEvaluation(string postfix) {
     return evaluation.peek();
 }
 
+/////////////////////////////////////////
 
+template<class dataType>
+string Stack<dataType> :: infixToPrefix(string input) {
+
+}

@@ -23,6 +23,7 @@ public:
     string infixToPostfix(string input) ;
     double postfixEvaluation(string posfix) ;
     double result(double x , double y , char c ) ;
+    string infixToPrefix(string input) ;
 };
 
 #endif //STACK_H
