@@ -2,43 +2,31 @@
 #include "Stack.h"
 #include <iostream>
 #include <cassert>
+#include <algorithm>
 using namespace std;
 
 template<class dataType>
-Stack<dataType>::Stack(int size) {
-    length = size ;
-    top = 0 ;
-    arr = new dataType[size] ;
-}
+Stack<dataType>::Stack() {}
 
 /////////////////////////////////////////
 
 template<class dataType>
 Stack<dataType>::~Stack() {
-    delete[] arr ;
-}
-
-/////////////////////////////////////////
-
-template<class dataType>
-bool Stack<dataType> :: isFull() {
-    return top  == length ;
+    list.clear() ;
 }
 
 /////////////////////////////////////////
 
 template<class dataType>
 bool Stack<dataType> :: isEmpty() {
-    return top == 0 ;
+    return list.isEmpty() ;
 }
 
 /////////////////////////////////////////
 
 template<class dataType>
 void Stack<dataType> :: push(dataType element) {
-    assert(!isFull()) ;
-    arr[top] = element ;
-    top++ ;
+    list.insertAtHead(element) ;
 }
 
 /////////////////////////////////////////
@@ -46,7 +34,7 @@ void Stack<dataType> :: push(dataType element) {
 template<class dataType>
 void Stack<dataType>::pop() {
     assert(!isEmpty()) ;
-    arr[--top] = -1 ;
+    list.removeHead();
 }
 
 /////////////////////////////////////////
@@ -54,21 +42,15 @@ void Stack<dataType>::pop() {
 template<class dataType>
 dataType Stack<dataType>::peek() {
     assert(!isEmpty()) ;
-    int pos = top ;
-    return arr[--pos] ;
+    return list.front();
 }
 
 /////////////////////////////////////////
 
 template<class dataType>
 void Stack<dataType>::print() {
-    assert(!isEmpty());
-    for (int i = top - 1 ; i >= 0 ; i--)
-        cout << arr[i] << ' ' ;
-    cout << '\n' ;
+    list.print();
 }
-
-/////////////////////////////////////////
 
 
 
