@@ -1,22 +1,24 @@
 
 #ifndef STACK_H
 #define STACK_H
+#include <iostream>
+#include <vector>
+#include "SinglyLinkedList.cpp"
+using namespace std;
 
 template <class dataType>
 class Stack {
 private:
-    int top ;
-    int length ;
-    dataType * arr  ;
+    SinglyLinkedList<dataType> list ;
 public:
-    Stack(int size );
+    Stack();
     ~Stack();
     void push(dataType element) ;
     void pop();
     dataType peek();
     void print() ;
     bool isEmpty();
-    bool isFull();
+
 };
 
 
