@@ -37,7 +37,8 @@ bool Stack<dataType> :: isEmpty() {
 template<class dataType>
 void Stack<dataType> :: push(dataType element) {
     assert(!isFull()) ;
-    arr[top++] = element ;
+    arr[top] = element ;
+    top++ ;
 }
 
 /////////////////////////////////////////
@@ -68,33 +69,6 @@ void Stack<dataType>::print() {
 }
 
 /////////////////////////////////////////
-
-template<class dataType>
-string Stack<dataType>::reverse_subwords(string str) {
-    Stack<dataType> st(str.size()) ;
-    string res = "" ;
-    for (auto c : str) {
-        if (c == ' ') {
-            while (!st.isEmpty()) {
-                res += st.peek() ;
-                st.pop();
-            }
-            res += ' ' ;
-        }
-        else
-            st.push(c) ;
-    }
-
-    return res ;
-}
-
-
-
-
-
-
-
-
 
 
 

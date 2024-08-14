@@ -1,8 +1,6 @@
 
 #ifndef STACK_H
 #define STACK_H
-#include <iostream>
-using namespace std;
 
 template <class dataType>
 class Stack {
@@ -19,8 +17,6 @@ public:
     void print() ;
     bool isEmpty();
     bool isFull();
-    // ================== Added Functions ============= //
-    string reverse_subwords(string str ) ;
 };
 
 

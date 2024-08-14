@@ -29,6 +29,9 @@ int main() {
     st.pop();
     cout << st.isEmpty() << '\n' ;
 
+    string str = "abc d efg xy" ;
+    cout << st.reverse_subwords(str) << '\n' ;
+
 
 
     return 0;
