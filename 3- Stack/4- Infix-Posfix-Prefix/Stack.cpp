@@ -184,19 +184,22 @@ string Stack<dataType>::reverseedInfixToPostfix(string input) {
 
 template<class dataType>
 string Stack<dataType> :: infixToPrefix(string input) {
-    reverse(input.begin() , input.end()) ;
+    string infix = "" ;
 
-    for (int i = 0 ; i < input.size() ; i++) {
-        if (input[i] == '(')
-            input[i] = ')';
-        else if (input[i] == ')')
-            input[i] = '(' ;
+    for (int i = input.size()  - 1 ; i >= 0 ; i--) {
+        if (input[i] == ')')
+            infix += '(' ;
+        else if (input[i] == '(')
+            infix += ')' ;
+        else
+            infix += input[i] ;
     }
+
 
     string postfix = reverseedInfixToPostfix(input) ;
 
     reverse(postfix.begin() , postfix.end()) ;
-    return postfix ; 
+    return postfix ;
 }
 
 
