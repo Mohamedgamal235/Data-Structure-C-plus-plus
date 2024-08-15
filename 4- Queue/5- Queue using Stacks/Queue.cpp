@@ -12,9 +12,7 @@ Queue<dataType>::Queue(int length) : st1(length), st2(length) {
 ///////////////////////////////////////
 
 template<class dataType>
-Queue<dataType>::~Queue() {
-    // Nothing to clean up manually
-}
+Queue<dataType>::~Queue() {}
 
 ///////////////////////////////////////
 
