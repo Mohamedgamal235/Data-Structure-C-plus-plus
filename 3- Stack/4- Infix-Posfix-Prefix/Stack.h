@@ -21,8 +21,11 @@ public:
     ///////////////////////////////////
     int precedence(char c ) ;
     string infixToPostfix(string input) ;
+    /////
     double postfixEvaluation(string posfix) ;
     double result(double x , double y , char c ) ;
+    ////
+    string reverseedInfixToPostfix(string input);
     string infixToPrefix(string input) ;
 };
 

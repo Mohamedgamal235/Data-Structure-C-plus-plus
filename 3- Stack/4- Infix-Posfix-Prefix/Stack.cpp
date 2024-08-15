@@ -9,28 +9,28 @@ using namespace std;
 template<class dataType>
 Stack<dataType>::Stack() {}
 
-/////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
 
 template<class dataType>
 Stack<dataType>::~Stack() {
     list.clear() ;
 }
 
-/////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
 
 template<class dataType>
 bool Stack<dataType> :: isEmpty() {
     return list.isEmpty() ;
 }
 
-/////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
 
 template<class dataType>
 void Stack<dataType> :: push(dataType element) {
     list.insertAtHead(element) ;
 }
 
-/////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
 
 template<class dataType>
 void Stack<dataType>::pop() {
@@ -38,7 +38,7 @@ void Stack<dataType>::pop() {
     list.removeHead();
 }
 
-/////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
 
 template<class dataType>
 dataType Stack<dataType>::peek() {
@@ -46,14 +46,14 @@ dataType Stack<dataType>::peek() {
     return list.front();
 }
 
-/////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
 
 template<class dataType>
 void Stack<dataType>::print() {
     list.print();
 }
 
-/////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
 
 template<class dataType>
 int Stack<dataType> :: precedence(char c) {
@@ -100,7 +100,7 @@ string Stack<dataType> :: infixToPostfix(string input) {
     return postfix ;
 }
 
-/////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
 
 template<class dataType>
 double Stack<dataType> :: result(double x , double y , char c ) {
@@ -137,9 +137,68 @@ double Stack<dataType> :: postfixEvaluation(string postfix) {
     return evaluation.peek();
 }
 
-/////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+
+template<class dataType>
+string Stack<dataType>::reverseedInfixToPostfix(string input) {
+    string postfix = "" ;
+    Stack<char> operators ;
+
+    for (auto c : input) {
+        if (isdigit(c) || isalpha(c))
+            postfix += c ;
+        else if (c == '(')
+            operators.push(c) ;
+        else if (c == ')') {
+            while (!operators.isEmpty() && operators.peek() != '(' ) {
+                postfix += operators.peek() ;
+                operators.pop() ;
+            }
+            operators.pop() ; // remove -> (
+        }
+        else {
+            // this same function above but changes in conditions only for prefix do < not <=
+            // assume you have 2^3^4 whithout condition == and c == '^'
+            // then the asnwer will be 234^^ so we did that for this case to be 23^4^
+            while (!operators.isEmpty() && precedence(c) < precedence(operators.peek())
+                    || (precedence(c) < precedence(operators.peek()) && c == '^')) {
+                postfix += operators.peek() ;
+                operators.pop() ;
+            }
+            operators.push(c);
+        }
+    }
+
+    while (!operators.isEmpty()) {
+        postfix += operators.peek() ;
+        operators.pop() ;
+    }
+
+    return postfix ;
+}
+
 
 template<class dataType>
 string Stack<dataType> :: infixToPrefix(string input) {
+    reverse(input.begin() , input.end()) ;
 
+    for (auto &c : input) {
+        if (c == ')')
+            c = '(' ;
+        else if (c == '(')
+            c = ')' ;
+    }
+
+    string postfix = reverseedInfixToPostfix(input) ;
+
+    reverse(postfix.begin() , postfix.end()) ;
 }
+
+
+
+
+
+
+
+
+
