@@ -160,10 +160,14 @@ string Stack<dataType>::reverseedInfixToPostfix(string input) {
             // this same function above but changes in conditions only for prefix do < not <=
             // assume you have 2^3^4 whithout condition == and c == '^'
             // then the asnwer will be 234^^ so we did that for this case to be 23^4^
-            while (!operators.isEmpty() && precedence(c) < precedence(operators.peek())
-                    || (precedence(c) < precedence(operators.peek()) && c == '^')) {
-                postfix += operators.peek() ;
-                operators.pop() ;
+            while(!operators.isEmpty()) {
+                if (precedence(operators.peek()) > precedence(c) ||
+                    precedence(operators.peek()) == precedence(c) && c == '^') {
+                    postfix += operators.peek();
+                    operators.pop();
+                }
+                else
+                    break;
             }
             operators.push(c);
         }
@@ -182,16 +186,17 @@ template<class dataType>
 string Stack<dataType> :: infixToPrefix(string input) {
     reverse(input.begin() , input.end()) ;
 
-    for (auto &c : input) {
-        if (c == ')')
-            c = '(' ;
-        else if (c == '(')
-            c = ')' ;
+    for (int i = 0 ; i < input.size() ; i++) {
+        if (input[i] == '(')
+            input[i] = ')';
+        else if (input[i] == ')')
+            input[i] = '(' ;
     }
 
     string postfix = reverseedInfixToPostfix(input) ;
 
     reverse(postfix.begin() , postfix.end()) ;
+    return postfix ; 
 }
 
 
