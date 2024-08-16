@@ -31,6 +31,11 @@ public:
     void removeHead();
     void removeTail();
     void removeAt(int index) ;
+    int size() const;
+    void print() const;
+    void clear();
+    bool isEmpty() const;
+    //======================= Extra Functions if you more practice ============== // 
     void removeNextNode(Node<dataType>* prev) ;
     void removeLastOccurance(int key);
     void moveToBack(int key );
@@ -43,11 +48,8 @@ public:
     void remove_duplicates();
     bool isExist(const dataType& element);
     bool isItemAtEqual(const dataType& element, int index);
-    void print() const;
-    void clear();
-    bool isEmpty() const;
     dataType findMiddel();
-    int size() const;
+    
 };
 
 #endif //SINGLYLINKEDLIST_H
