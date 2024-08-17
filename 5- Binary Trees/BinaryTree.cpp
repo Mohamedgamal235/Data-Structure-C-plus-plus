@@ -37,4 +37,3 @@ void BinaryTree<dataType>::printInOrder() {
 
 }
 
-
