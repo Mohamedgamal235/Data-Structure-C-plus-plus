@@ -78,7 +78,46 @@ int BinaryTree<dataType>::numberOfNodesHelper(Node<dataType>* curr) {
 
 // ============================
 
+template<class dataType>
+int BinaryTree<dataType> :: numberOfLeavesHelper(Node<dataType> *curr) {
+    if (!curr) // if tree is empty
+        return 0 ;
 
+    if (!curr->left && !curr->right)
+        return 1 ;
+
+    int sub1 = numberOfLeavesHelper(curr->left) ;
+    int sub2 = numberOfLeavesHelper(curr->right);
+
+    return sub1 + sub2 ;
+}
+
+// ============================
+
+template<class dataType>
+bool BinaryTree<dataType> :: isExistHepler(Node<dataType> *curr , dataType value ) {
+    if (!curr)
+        return false ;
+
+    if (curr->data == value)
+        return true ;
+
+    return isExistHepler(curr->left, value) || isExistHepler(curr->right, value)  ;
+}
+
+// ============================
+
+template<class dataType>
+void BinaryTree<dataType>::clearHelper(Node<dataType> *curr) {
+    if (!curr)
+        return ;
+
+    clearHelper(curr->left) ;
+    clearHelper(curr->right) ;
+
+    delete curr ;
+    curr = nullptr ;
+}
 
 
 // ========================================================================= //
@@ -94,13 +133,22 @@ BinaryTree<dataType>::BinaryTree(const dataType &val) {
 
 template<class dataType>
 BinaryTree<dataType>::~BinaryTree() {
-
+    clearHelper(root) ;
 }
 
 //////////////////////////
 
 template<class dataType>
+bool BinaryTree<dataType> :: isEmpty() {
+    return root == nullptr ;
+}
+
+template<class dataType>
 void BinaryTree<dataType>::printInOrder() {
+    if (isEmpty()) {
+        cout << "The Tree is Empty\n" ;
+        return;
+    }
     printInOrderHelper(root) ;
     cout << '\n' ;
 }
@@ -109,6 +157,10 @@ void BinaryTree<dataType>::printInOrder() {
 
 template<class dataType>
 void BinaryTree<dataType>::printInPostOrder() {
+    if (isEmpty()) {
+        cout << "The Tree is Empty\n" ;
+        return;
+    }
     printInPostOrderHelper(root) ;
     cout << '\n' ;
 }
@@ -117,6 +169,10 @@ void BinaryTree<dataType>::printInPostOrder() {
 
 template<class dataType>
 void BinaryTree<dataType>::printInPreOrder() {
+    if (isEmpty()) {
+        cout << "The Tree is Empty\n" ;
+        return;
+    }
     printInPreOrderHelper(root) ;
     cout << '\n' ;
 }
@@ -172,8 +228,23 @@ int BinaryTree<dataType> :: numberOfNodes() {
     return numberOfNodesHelper(root) ;
 }
 
+//////////////////////////
 
+template<class dataType>
+int BinaryTree<dataType>::numberOfLeaves() {
+    return numberOfLeavesHelper(root) ;
+}
 
+template<class dataType>
+bool BinaryTree<dataType> :: isExist(dataType value) {
+    return isExistHepler(root , value ) ;
+}
+
+template<class dataType>
+void BinaryTree<dataType> :: clear() {
+    clearHelper(root) ;
+    root = nullptr ;
+}
 
 
 
