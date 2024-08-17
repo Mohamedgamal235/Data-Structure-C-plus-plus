@@ -18,6 +18,9 @@ private:
     void printInOrderHelper(Node<dataType>* curr) ;
     void printInPostOrderHelper(Node<dataType>* curr) ;
     void printInPreOrderHelper(Node<dataType>* curr) ;
+    dataType maxElementHelper(Node<dataType>* curr) ;
+    int heightOfTreeHelper(Node<dataType>* curr) ;
+    int numberOfNodesHelper(Node<dataType>* curr) ;
 public:
     BinaryTree(const dataType &val);
     ~BinaryTree();
@@ -25,6 +28,9 @@ public:
     void printInPostOrder() ;
     void printInPreOrder() ;
     void insert(const vector<dataType> &values , const vector<char> &direction ) ;
+    dataType maxElement() ;
+    int heightOfTree();
+    int numberOfNodes() ;
 };
 
 #endif //BINARYTREE_H
