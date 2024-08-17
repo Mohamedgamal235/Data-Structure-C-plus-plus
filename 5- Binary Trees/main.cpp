@@ -27,6 +27,11 @@ int main() {
 
     cout << tree2.heightOfTree() << '\n' ;
     cout << tree2.numberOfNodes() << '\n' ;
+    cout << tree2.numberOfLeaves() << '\n' ;
+    cout << tree2.isExist(5) << '\n' ;
+    cout << tree2.isExist(13) << '\n' ;
+    tree2.clear() ;
+    tree2.printInPostOrder() ;
 
     return  0 ;
 }
