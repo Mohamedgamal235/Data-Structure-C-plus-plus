@@ -3,6 +3,7 @@
 #include <cassert>
 using namespace std;
 
+// ========================================================================= //
 // ================= Implementation Helper Functions ======================= //
 // ========================================================================= //
 
@@ -15,7 +16,7 @@ void BinaryTree<dataType>::printInOrderHelper(Node<dataType>* curr) {
     printInOrderHelper(curr->right) ;
 }
 
-// ==================================================
+// ============================
 
 template<class dataType>
 void BinaryTree<dataType>::printInPostOrderHelper(Node<dataType>* curr) {
@@ -26,7 +27,7 @@ void BinaryTree<dataType>::printInPostOrderHelper(Node<dataType>* curr) {
     cout << curr->data << ' ' ;
 }
 
-// ==================================================
+// ============================
 
 template<class dataType>
 void BinaryTree<dataType>::printInPreOrderHelper(Node<dataType>* curr) {
@@ -37,8 +38,50 @@ void BinaryTree<dataType>::printInPreOrderHelper(Node<dataType>* curr) {
     printInPreOrderHelper(curr->right) ;
 }
 
-// ==================================================
+// ============================
 
+template<class dataType>
+dataType BinaryTree<dataType>::maxElementHelper(Node<dataType>* curr) {
+    if (!curr)
+        return dataType() ;
+
+    dataType leftMax = maxElementHelper(curr->left) ;
+    dataType rightMax = maxElementHelper(curr->right) ;
+
+    return max(curr->data , max(leftMax , rightMax)) ;
+}
+
+// ============================
+
+template<class dataType>
+int BinaryTree<dataType>::heightOfTreeHelper(Node<dataType> * curr) {
+    if (!curr)
+        return -1 ;
+
+    int h1 = 1 + heightOfTreeHelper(curr->left) ;
+    int h2 = 1 + heightOfTreeHelper(curr->right) ;
+
+    return max(h1 , h2 ) ;
+}
+
+// ============================
+
+template<class dataType>
+int BinaryTree<dataType>::numberOfNodesHelper(Node<dataType>* curr) {
+    if (!curr)
+        return 0 ;
+    int sub1 = numberOfNodesHelper(curr->left) ;
+    int sub2 = numberOfNodesHelper(curr->right) ;
+
+    return 1 + sub1 + sub2 ;
+}
+
+// ============================
+
+
+
+
+// ========================================================================= //
 // ================= Implementation User Functions ========================= //
 // ========================================================================= //
 
@@ -110,11 +153,24 @@ void BinaryTree<dataType>::insert(const vector<dataType> &values, const vector<c
 
 //////////////////////////
 
+template<class dataType>
+dataType BinaryTree<dataType>::maxElement() {
+    return maxElementHelper(root) ;
+}
 
+//////////////////////////
 
+template<class dataType>
+int BinaryTree<dataType>::heightOfTree() {
+    return heightOfTreeHelper(root) ;
+}
 
+//////////////////////////
 
-
+template<class dataType>
+int BinaryTree<dataType> :: numberOfNodes() {
+    return numberOfNodesHelper(root) ;
+}
 
 
 
