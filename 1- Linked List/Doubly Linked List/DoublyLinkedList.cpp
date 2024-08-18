@@ -63,13 +63,13 @@ template<class dataType>
 void DoublyLinkedList<dataType> ::insertAt(const dataType& element, int index) {
 
 
-    assert(index >= 0 && index < len);
+    assert(index >= 0 && index <= len);
 
     if (index == 0) {
         insertAtHead(element);
         return;
     }
-    if (index == len - 1) {
+    if (index == len ) {
         insertAtTail(element);
         return;
     }
