@@ -14,15 +14,21 @@ struct Node {
 template<class dataType>
 class BinarySearchTree {
 private:
-    Node<dataType> root ;
+    Node<dataType>* root ;
 
-    void insertHelper(Node<dataType>* curr , dataType value)
+    void inOrder(Node<dataType>* curr);
+    void inPre(Node<dataType>* curr);
+    void inPost(Node<dataType>* curr);
+    void insertHelper(Node<dataType>* curr , dataType value);
 
 public:
     BinarySearchTree() ;
     ~BinarySearchTree() ;
     void insert(dataType value) ;
     bool isEmpty() ;
+    void printInOrder() ;
+    void printInPreOrder() ;
+    void printInPostOrder() ;
 };
 
 
