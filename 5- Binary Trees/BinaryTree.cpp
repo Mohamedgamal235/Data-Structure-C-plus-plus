@@ -1,6 +1,7 @@
 #include "BinaryTree.h"
 #include <iostream>
 #include <cassert>
+#include <queue>
 using namespace std;
 
 // ========================================================================= //
@@ -244,6 +245,31 @@ template<class dataType>
 void BinaryTree<dataType> :: clear() {
     clearHelper(root) ;
     root = nullptr ;
+}
+
+template<class dataType>
+void BinaryTree<dataType>::printInLevelOrder() {
+    queue<Node<dataType>*> nodes ;
+    nodes.push(root) ;
+    int level = 0 ;
+    
+    while(!nodes.empty()) {
+        int size = nodes.size() ;
+
+        cout << "Level " << level << " : " ;
+        while(size--) {
+            Node<dataType>* curr = nodes.front();
+            nodes.pop();
+
+            cout << curr->data << ' ' ;
+            if (curr->left)
+                nodes.push(curr->left) ;
+            if (curr->right)
+                nodes.push(curr->right) ;
+        }
+        level++ ;
+        cout << '\n' ;
+    }
 }
 
 
