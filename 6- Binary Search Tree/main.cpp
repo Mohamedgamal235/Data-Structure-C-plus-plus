@@ -24,7 +24,7 @@ int main() {
     cout << '\n' ;
 
     cout << "\nPreOrder: ";
-    tree.printInPreOrder();
+    tree.printInPreOrder() ;
     cout << '\n' ;
 
     return 0;
