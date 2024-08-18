@@ -33,5 +33,13 @@ int main() {
     tree2.clear() ;
     tree2.printInPostOrder() ;
 
+    cout << "==================\n" ;
+
+    BinaryTree<int> tree3(2) ;
+    tree3.insert({4,8},{'L' , 'L'});
+    tree3.insert({3,5},{'R','R'});
+    tree3.insert({3,6} , {'R' , 'L'}) ;
+    tree3.printInLevelOrder();
+
     return  0 ;
 }
