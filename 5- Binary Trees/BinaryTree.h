@@ -18,8 +18,9 @@ private:
     void printInOrderHelper(Node<dataType>* curr) ;
     void printInPostOrderHelper(Node<dataType>* curr) ;
     void printInPreOrderHelper(Node<dataType>* curr) ;
-    
+
     // ============== Extra Function for Practice if you want ============== //
+    void printInLevelOrderHelper(Node<dataType>* curr) ;
     dataType maxElementHelper(Node<dataType>* curr) ;
     int heightOfTreeHelper(Node<dataType>* curr) ;
     int numberOfNodesHelper(Node<dataType>* curr) ;
@@ -39,6 +40,7 @@ public: // ============== Public ============== //
     bool isEmpty() ;
 
     // ============== Extra Function for Practice if you want ============== //
+    void printInLevelOrder() ;
     dataType maxElement() ;
     int heightOfTree();
     int numberOfNodes() ;
