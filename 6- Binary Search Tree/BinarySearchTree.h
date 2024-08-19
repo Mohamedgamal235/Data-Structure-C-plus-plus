@@ -20,6 +20,7 @@ private:
     void inPre(Node<dataType>* curr);
     void inPost(Node<dataType>* curr);
     void insertHelper(Node<dataType>* curr , dataType value);
+    Node<dataType>* removeHelper(Node<dataType>* curr , dataType value) ;
     void clearHelper(Node<dataType>* curr) ;
     bool searchHelper(Node<dataType>* curr , dataType value ) ;
     dataType getMaxHelper(Node<dataType>* curr) ;
@@ -29,6 +30,7 @@ public:
     BinarySearchTree() ;
     ~BinarySearchTree() ;
     void insert(dataType value) ;
+    void remove(dataType value) ;
     bool isEmpty() ;
     bool isExist(dataType value) ;
     dataType getMax() ;
