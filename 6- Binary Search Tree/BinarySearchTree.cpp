@@ -1,5 +1,6 @@
 #include "BinarySearchTree.h"
 #include <iostream>
+#include <queue>
 using namespace std;
 
 // ========================================================================= //
@@ -181,6 +182,27 @@ void BinarySearchTree<dataType>::printInPreOrder() {
     }
     inPre(root);
 }
+
+/////////////////////////////
+
+template<class dataType>
+void BinarySearchTree<dataType>::printLevelOrider() {
+    queue<Node<dataType>*> node ;
+    node.push(root) ;
+
+    while (!node.empty()) {
+        Node<dataType>* curr = node.front() ;
+        node.pop();
+
+        cout << curr->data << ' ' ;
+        if (curr->left)
+            node.push(curr->left) ;
+        if (curr->right)
+            node.push(curr->right) ;
+    }
+}
+
+/////////////////////////////
 
 template<class dataType>
 void BinarySearchTree<dataType> :: clear() {
