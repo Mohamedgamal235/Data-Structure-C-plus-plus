@@ -23,7 +23,21 @@ void BinarySearchTree<dataType>::insertHelper(Node<dataType> *curr, dataType val
     }
 }
 
-// =======================
+// ===============================================
+
+template<class dataType>
+Node<dataType>* BinarySearchTree<dataType>::specialDelete(Node<dataType> *curr , Node<dataType> *child) {
+    // Instead of deleting the node and returning its child, copy the child's data to the current node
+    // and then delete the child node. This prevents runtime errors when the node to be deleted is
+    // actually the root node or any other node that should not be deleted directly.
+    curr->data = child->data ;
+    curr->left = child->left ;
+    curr->right = child->right ;
+    delete child ;
+    return curr ;
+}
+
+// ===============================================
 
 template<class dataType>
 Node<dataType> *BinarySearchTree<dataType>::removeHelper(Node<dataType> *curr, dataType value) {
@@ -33,21 +47,23 @@ Node<dataType> *BinarySearchTree<dataType>::removeHelper(Node<dataType> *curr, d
         curr->left = removeHelper(curr->left , value) ;
     else if (value > curr->data)
         curr->right = removeHelper(curr->right , value) ;
-    else {
-        // one if condition will run if curr has none or one child
-        if (!curr->left) {
-            Node<dataType>* currRight = curr->right ;
+    else { // Node to be deleted found
+
+        // Case 1: Node with no children (leaf node)
+        if (!curr->left && !curr->right) {
             delete curr ;
-            return currRight ;
+            return nullptr ;
         }
 
-        if (!curr->right) {
-            Node<dataType>* currLeft = curr->left ;
-            delete curr ;
-            return currLeft ;
-        }
+        // Case 2: Node with only one child has node on (right)
+        if (!curr->left)
+            return specialDelete(curr , curr->right) ;
 
-        // if curr has 2 child
+        // Case 2: Node with only one child has node on (left)
+        if (!curr->right)
+            return specialDelete(curr , curr->left) ;
+
+        // Case 3: Node with two children
         curr->data = getMaxHelper(curr->left) ;
         curr->left = removeHelper(curr->left , curr->data) ;
     }
@@ -55,7 +71,8 @@ Node<dataType> *BinarySearchTree<dataType>::removeHelper(Node<dataType> *curr, d
 }
 
 
-// =======================
+// ===============================================
+
 
 template<class dataType>
 void BinarySearchTree<dataType> :: inOrder(Node<dataType>* curr) {
@@ -66,7 +83,7 @@ void BinarySearchTree<dataType> :: inOrder(Node<dataType>* curr) {
     inOrder(curr->right);
 }
 
-// =======================
+// ===============================================
 
 template<class dataType>
 void BinarySearchTree<dataType>::inPre(Node<dataType> *curr) {
@@ -77,7 +94,7 @@ void BinarySearchTree<dataType>::inPre(Node<dataType> *curr) {
     inPre(curr->right) ;
 }
 
-// =======================
+// ===============================================
 
 template<class dataType>
 void BinarySearchTree<dataType>::inPost(Node<dataType> *curr) {
@@ -88,14 +105,14 @@ void BinarySearchTree<dataType>::inPost(Node<dataType> *curr) {
     cout << curr->data << ' ' ;
 }
 
-// =======================
+// ===============================================
 
 template<class dataType>
 void BinarySearchTree<dataType>::clearHelper(Node<dataType> *curr) {
 
 }
 
-// =======================
+// ===============================================
 
 template<class dataType>
 bool BinarySearchTree<dataType>::searchHelper(Node<dataType> *curr , dataType value ) {
@@ -108,7 +125,7 @@ bool BinarySearchTree<dataType>::searchHelper(Node<dataType> *curr , dataType va
     return curr->right && searchHelper(curr->right , value) ;
 }
 
-// =======================
+// ===============================================
 
 template<class dataType>
 dataType BinarySearchTree<dataType>::getMinHelper(Node<dataType> *curr) {
@@ -118,7 +135,7 @@ dataType BinarySearchTree<dataType>::getMinHelper(Node<dataType> *curr) {
     return getMinHelper(curr->left) ;
 }
 
-// =======================
+// ===============================================
 
 template<class dataType>
 dataType BinarySearchTree<dataType>::getMaxHelper(Node<dataType> *curr) {
@@ -247,8 +264,3 @@ template<class dataType>
 void BinarySearchTree<dataType> :: clear() {
     clear(root) ;
 }
-
-
-
-
-
