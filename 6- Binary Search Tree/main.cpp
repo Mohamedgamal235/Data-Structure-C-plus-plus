@@ -40,7 +40,21 @@ int main() {
     cout << tree.getMin() << '\n' ; // 15
 
     cout << "Maximum element : " ;
-    cout << tree.getMax() << '\n' ; // 73 
+    cout << tree.getMax() << '\n' ; // 73
+    cout << "================\n" ;
+
+    tree.remove(35) ;
+    cout << "InOrder after remove(35) : " ;
+    tree.printInOrder();                    // 15 20 45 50 60 70 73
+    cout << "\n================\n" ;
+    tree.remove(20) ;
+    cout << "InOrder after remove(20) : " ;
+    tree.printInOrder();                    // 15 45 50 60 70 73
+    cout << "\n================\n" ;
+    tree.remove(70) ;
+    cout << "InOrder after remove(70) : " ;
+    tree.printInOrder();                    // 15 45 50 60 73
+    cout << "\n================\n" ;
 
     return 0;
 }
