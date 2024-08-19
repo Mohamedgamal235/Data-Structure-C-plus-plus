@@ -20,15 +20,23 @@ private:
     void inPre(Node<dataType>* curr);
     void inPost(Node<dataType>* curr);
     void insertHelper(Node<dataType>* curr , dataType value);
+    void clearHelper(Node<dataType>* curr) ;
+    bool searchHelper(Node<dataType>* curr , dataType value ) ;
+    dataType getMaxHelper(Node<dataType>* curr) ;
+    dataType getMinHelper(Node<dataType>* curr) ;
 
 public:
     BinarySearchTree() ;
     ~BinarySearchTree() ;
     void insert(dataType value) ;
     bool isEmpty() ;
+    bool isExist(dataType value) ;
+    dataType getMax() ;
+    dataType getMin() ;
     void printInOrder() ;
     void printInPreOrder() ;
     void printInPostOrder() ;
+    void clear() ;
 };
 
 
