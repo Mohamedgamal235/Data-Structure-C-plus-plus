@@ -17,15 +17,26 @@ int main() {
 
     cout << "InOrder: ";
     tree.printInOrder();
-    cout << '\n' ;
+    cout << "\n================\n" ;
 
-    cout << "\nPostOrder: ";
+    cout << "PostOrder: ";
     tree.printInPostOrder();
-    cout << '\n' ;
+    cout << "\n================\n" ;
 
-    cout << "\nPreOrder: ";
-    tree.printInPreOrder() ;
-    cout << '\n' ;
+    cout << "PreOrder: ";
+    tree.printInPreOrder();
+    cout << "\n================\n" ;
+
+    cout << "isExist Function\n" ;
+    cout << tree.isExist(30) << '\n' ;
+    cout << tree.isExist(35) << '\n' ;
+    cout << "================\n" ;
+
+    cout << "Minimum element : " ;
+    cout << tree.getMin() << '\n' ;
+
+    cout << "Maximum element : " ;
+    cout << tree.getMax() << '\n' ;
 
     return 0;
 }
