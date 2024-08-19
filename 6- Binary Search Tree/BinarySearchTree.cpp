@@ -55,6 +55,45 @@ void BinarySearchTree<dataType>::inPost(Node<dataType> *curr) {
     cout << curr->data << ' ' ;
 }
 
+// =======================
+
+template<class dataType>
+void BinarySearchTree<dataType>::clearHelper(Node<dataType> *curr) {
+
+}
+
+// =======================
+
+template<class dataType>
+bool BinarySearchTree<dataType>::searchHelper(Node<dataType> *curr , dataType value ) {
+    if (curr->data == value)
+        return true ;
+
+    if (curr->data > value)
+        return curr->left && searchHelper(curr->left , value);
+
+    return curr->right && searchHelper(curr->right , value) ;
+}
+
+// =======================
+
+template<class dataType>
+dataType BinarySearchTree<dataType>::getMinHelper(Node<dataType> *curr) {
+    if (!curr->left)
+        return curr->data ;
+
+    return getMinHelper(curr->left) ;
+}
+
+// =======================
+
+template<class dataType>
+dataType BinarySearchTree<dataType>::getMaxHelper(Node<dataType> *curr) {
+    if (!curr->right)
+        return curr->data ;
+
+    return getMaxHelper(curr->right) ;
+}
 
 // ========================================================================= //
 // ================= Implementation User Functions ========================= //
@@ -92,6 +131,27 @@ void BinarySearchTree<dataType>::insert(dataType value) {
 /////////////////////////////
 
 template<class dataType>
+bool BinarySearchTree<dataType>::isExist(dataType value) {
+    return searchHelper(root , value) ;
+}
+
+/////////////////////////////
+
+template<class dataType>
+dataType BinarySearchTree<dataType>::getMin() {
+    return getMinHelper(root) ;
+}
+
+/////////////////////////////
+
+template<class dataType>
+dataType BinarySearchTree<dataType>::getMax() {
+    return getMaxHelper(root) ;
+}
+
+/////////////////////////////
+
+template<class dataType>
 void BinarySearchTree<dataType>::printInOrder() {
     if (isEmpty()) {
         cout << "Tree is empty\n";
@@ -122,7 +182,10 @@ void BinarySearchTree<dataType>::printInPreOrder() {
     inPre(root);
 }
 
-
+template<class dataType>
+void BinarySearchTree<dataType> :: clear() {
+    clear(root) ;
+}
 
 
 
