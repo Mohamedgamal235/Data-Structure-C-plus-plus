@@ -20,6 +20,7 @@ private:
     void inPre(Node<dataType>* curr);
     void inPost(Node<dataType>* curr);
     void insertHelper(Node<dataType>* curr , dataType value);
+    Node<dataType>* specialDelete(Node<dataType> *curr  , Node<dataType>* child) ;
     Node<dataType>* removeHelper(Node<dataType>* curr , dataType value) ;
     void clearHelper(Node<dataType>* curr) ;
     bool searchHelper(Node<dataType>* curr , dataType value ) ;
