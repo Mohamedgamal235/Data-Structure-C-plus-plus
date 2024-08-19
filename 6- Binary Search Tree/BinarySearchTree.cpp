@@ -26,6 +26,38 @@ void BinarySearchTree<dataType>::insertHelper(Node<dataType> *curr, dataType val
 // =======================
 
 template<class dataType>
+Node<dataType> *BinarySearchTree<dataType>::removeHelper(Node<dataType> *curr, dataType value) {
+    if (!curr)
+        return curr ;
+    if (value < curr->data)
+        curr->left = removeHelper(curr->left , value) ;
+    else if (value > curr->data)
+        curr->right = removeHelper(curr->right , value) ;
+    else {
+        // one if condition will run if curr has none or one child
+        if (!curr->left) {
+            Node<dataType>* currRight = curr->right ;
+            delete curr ;
+            return currRight ;
+        }
+
+        if (!curr->right) {
+            Node<dataType>* currLeft = curr->left ;
+            delete curr ;
+            return currLeft ;
+        }
+
+        // if curr has 2 child
+        curr->data = getMaxHelper(curr->left) ;
+        curr->left = removeHelper(curr->left , curr->data) ;
+    }
+    return curr ;
+}
+
+
+// =======================
+
+template<class dataType>
 void BinarySearchTree<dataType> :: inOrder(Node<dataType>* curr) {
     if (!curr)
         return;
@@ -132,6 +164,13 @@ void BinarySearchTree<dataType>::insert(dataType value) {
 /////////////////////////////
 
 template<class dataType>
+void BinarySearchTree<dataType>::remove(dataType value) {
+    root = removeHelper(root , value) ;
+}
+
+/////////////////////////////
+
+template<class dataType>
 bool BinarySearchTree<dataType>::isExist(dataType value) {
     return searchHelper(root , value) ;
 }
@@ -208,15 +247,6 @@ template<class dataType>
 void BinarySearchTree<dataType> :: clear() {
     clear(root) ;
 }
-
-
-
-
-
-
-
-
-
 
 
 
