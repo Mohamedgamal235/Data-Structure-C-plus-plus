@@ -23,7 +23,7 @@ void BinarySearchTree<dataType>::insertHelper(Node<dataType> *curr, dataType val
     }
 }
 
-// ===============================================
+// =====================================
 
 template<class dataType>
 Node<dataType>* BinarySearchTree<dataType>::specialDelete(Node<dataType> *curr , Node<dataType> *child) {
@@ -37,7 +37,7 @@ Node<dataType>* BinarySearchTree<dataType>::specialDelete(Node<dataType> *curr ,
     return curr ;
 }
 
-// ===============================================
+// =====================================
 
 template<class dataType>
 Node<dataType> *BinarySearchTree<dataType>::removeHelper(Node<dataType> *curr, dataType value) {
@@ -70,9 +70,7 @@ Node<dataType> *BinarySearchTree<dataType>::removeHelper(Node<dataType> *curr, d
     return curr ;
 }
 
-
-// ===============================================
-
+// =====================================
 
 template<class dataType>
 void BinarySearchTree<dataType> :: inOrder(Node<dataType>* curr) {
@@ -83,7 +81,7 @@ void BinarySearchTree<dataType> :: inOrder(Node<dataType>* curr) {
     inOrder(curr->right);
 }
 
-// ===============================================
+// =====================================
 
 template<class dataType>
 void BinarySearchTree<dataType>::inPre(Node<dataType> *curr) {
@@ -94,7 +92,7 @@ void BinarySearchTree<dataType>::inPre(Node<dataType> *curr) {
     inPre(curr->right) ;
 }
 
-// ===============================================
+// =====================================
 
 template<class dataType>
 void BinarySearchTree<dataType>::inPost(Node<dataType> *curr) {
@@ -105,14 +103,14 @@ void BinarySearchTree<dataType>::inPost(Node<dataType> *curr) {
     cout << curr->data << ' ' ;
 }
 
-// ===============================================
+// =====================================
 
 template<class dataType>
 void BinarySearchTree<dataType>::clearHelper(Node<dataType> *curr) {
 
 }
 
-// ===============================================
+// =====================================
 
 template<class dataType>
 bool BinarySearchTree<dataType>::searchHelper(Node<dataType> *curr , dataType value ) {
@@ -125,7 +123,7 @@ bool BinarySearchTree<dataType>::searchHelper(Node<dataType> *curr , dataType va
     return curr->right && searchHelper(curr->right , value) ;
 }
 
-// ===============================================
+// =====================================
 
 template<class dataType>
 dataType BinarySearchTree<dataType>::getMinHelper(Node<dataType> *curr) {
@@ -135,7 +133,7 @@ dataType BinarySearchTree<dataType>::getMinHelper(Node<dataType> *curr) {
     return getMinHelper(curr->left) ;
 }
 
-// ===============================================
+// =====================================
 
 template<class dataType>
 dataType BinarySearchTree<dataType>::getMaxHelper(Node<dataType> *curr) {
@@ -144,6 +142,46 @@ dataType BinarySearchTree<dataType>::getMaxHelper(Node<dataType> *curr) {
 
     return getMaxHelper(curr->right) ;
 }
+
+// =====================================
+
+template<class dataType>
+Node<dataType> *BinarySearchTree<dataType>::searchForSuccessor(Node<dataType>* curr , dataType value) {
+    if (curr->data == value)
+        return curr ;
+    if (value > curr->data)
+        return searchForSuccessor(curr->right , value) ;
+    if (value < curr->data)
+        return searchForSuccessor(curr->left , value) ;
+
+    return nullptr;
+}
+
+// =====================================
+
+template<class dataType>
+dataType BinarySearchTree<dataType>::successorHelper(Node<dataType> *curr, dataType value) {
+    if (curr->right)
+        return getMinHelper(curr->right) ;
+
+    Node<dataType>* successor = nullptr ;
+    Node<dataType>* ancestor = root ;
+
+    while(ancestor != curr) {
+        if (value > ancestor->data)
+            ancestor = ancestor->right ;
+        else {
+            successor = ancestor ;
+            ancestor = ancestor->left ;
+        }
+    }
+    if (successor)
+        return successor->data ;
+
+    return -1 ;
+}
+
+
 
 // ========================================================================= //
 // ================= Implementation User Functions ========================= //
@@ -154,21 +192,21 @@ BinarySearchTree<dataType>::BinarySearchTree() {
     root = nullptr ;
 }
 
-/////////////////////////////
+////////////////////////////////////////////////////////
 
 template<class dataType>
 BinarySearchTree<dataType>::~BinarySearchTree() {
     // clear();
 }
 
-/////////////////////////////
+////////////////////////////////////////////////////////
 
 template<class dataType>
 bool BinarySearchTree<dataType> :: isEmpty() {
     return root == nullptr ;
 }
 
-/////////////////////////////
+////////////////////////////////////////////////////////
 
 template<class dataType>
 void BinarySearchTree<dataType>::insert(dataType value) {
@@ -178,35 +216,35 @@ void BinarySearchTree<dataType>::insert(dataType value) {
         insertHelper(root , value) ;
 }
 
-/////////////////////////////
+////////////////////////////////////////////////////////
 
 template<class dataType>
 void BinarySearchTree<dataType>::remove(dataType value) {
     root = removeHelper(root , value) ;
 }
 
-/////////////////////////////
+////////////////////////////////////////////////////////
 
 template<class dataType>
 bool BinarySearchTree<dataType>::isExist(dataType value) {
     return searchHelper(root , value) ;
 }
 
-/////////////////////////////
+////////////////////////////////////////////////////////
 
 template<class dataType>
 dataType BinarySearchTree<dataType>::getMin() {
     return getMinHelper(root) ;
 }
 
-/////////////////////////////
+////////////////////////////////////////////////////////
 
 template<class dataType>
 dataType BinarySearchTree<dataType>::getMax() {
     return getMaxHelper(root) ;
 }
 
-/////////////////////////////
+////////////////////////////////////////////////////////
 
 template<class dataType>
 void BinarySearchTree<dataType>::printInOrder() {
@@ -217,7 +255,7 @@ void BinarySearchTree<dataType>::printInOrder() {
     inOrder(root);
 }
 
-/////////////////////////////
+////////////////////////////////////////////////////////
 
 template<class dataType>
 void BinarySearchTree<dataType>::printInPostOrder() {
@@ -228,7 +266,7 @@ void BinarySearchTree<dataType>::printInPostOrder() {
     inPost(root);
 }
 
-/////////////////////////////
+////////////////////////////////////////////////////////
 
 template<class dataType>
 void BinarySearchTree<dataType>::printInPreOrder() {
@@ -239,7 +277,7 @@ void BinarySearchTree<dataType>::printInPreOrder() {
     inPre(root);
 }
 
-/////////////////////////////
+////////////////////////////////////////////////////////
 
 template<class dataType>
 void BinarySearchTree<dataType>::printLevelOrider() {
@@ -258,9 +296,33 @@ void BinarySearchTree<dataType>::printLevelOrider() {
     }
 }
 
-/////////////////////////////
+////////////////////////////////////////////////////////
 
 template<class dataType>
 void BinarySearchTree<dataType> :: clear() {
     clear(root) ;
 }
+
+////////////////////////////////////////////////////////
+
+template<class dataType>
+dataType BinarySearchTree<dataType>::successor(dataType value) {
+    Node<dataType>* curr = searchForSuccessor(root , value) ;
+    if (!curr)
+        return -1 ;
+    return successorHelper(curr , value) ;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
