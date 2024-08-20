@@ -107,7 +107,11 @@ void BinarySearchTree<dataType>::inPost(Node<dataType> *curr) {
 
 template<class dataType>
 void BinarySearchTree<dataType>::clearHelper(Node<dataType> *curr) {
-
+    if (!curr)
+        return;
+    clearHelper(curr->left) ;
+    clearHelper(curr->right) ;
+    delete curr ;
 }
 
 // =====================================
@@ -219,7 +223,8 @@ BinarySearchTree<dataType>::BinarySearchTree() {
 
 template<class dataType>
 BinarySearchTree<dataType>::~BinarySearchTree() {
-    // clear();
+    clear();
+    root = nullptr ;
 }
 
 ////////////////////////////////////////////////////////
@@ -323,7 +328,8 @@ void BinarySearchTree<dataType>::printLevelOrider() {
 
 template<class dataType>
 void BinarySearchTree<dataType> :: clear() {
-    clear(root) ;
+    clearHelper(root) ;
+    root = nullptr ;
 }
 
 ////////////////////////////////////////////////////////
