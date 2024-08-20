@@ -28,7 +28,8 @@ private:
     dataType getMaxHelper(Node<dataType>* curr) ;
     dataType getMinHelper(Node<dataType>* curr) ;
     dataType successorHelper(Node<dataType>* curr , dataType value) ;
-    Node<dataType>* searchForSuccessor(Node<dataType>* curr , dataType value) ;
+    dataType  predecessorHelper(Node<dataType>* curr , dataType value) ;
+    Node<dataType>* searchForNode(Node<dataType>* curr , dataType value) ;
 
 public:
     BinarySearchTree() ;
@@ -37,6 +38,7 @@ public:
     void remove(dataType value) ;
     bool isExist(dataType value) ;
     dataType successor(dataType value ) ;
+    dataType predecessor(dataType value) ;
     bool isEmpty() ;
     dataType getMax() ;
     dataType getMin() ;
