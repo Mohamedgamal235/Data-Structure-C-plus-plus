@@ -75,7 +75,10 @@ int main() {
     cout << "Predecessor for (14) : " << tree2.predecessor(14) << '\n' ;
     cout << "Predecessor for (9)  : " << tree2.predecessor(9) << '\n' ;
     cout << "Predecessor for (1)  : " << tree2.predecessor(1) << '\n' ;
+    cout << "================\n" ;
 
+    tree2.clear() ;
+    tree2.printInOrder();
 
     return 0;
 }
