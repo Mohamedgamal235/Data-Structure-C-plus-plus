@@ -65,11 +65,17 @@ int main() {
     tree2.insert(14);
     tree2.insert(9);
     tree2.insert(1);
-    
-    cout << tree2.successor(20) << '\n' ; // -1
-    cout << tree2.successor(14) << '\n' ; // 15
-    cout << tree2.successor(8) << '\n' ; // 9
-    cout << "\n================\n" ;
+
+    cout << "Successor for (20) : " << tree2.successor(20) << '\n' ;
+    cout << "Successor for (14) : " << tree2.successor(14) << '\n' ;
+    cout << "Successor for (8)  : " << tree2.successor(8) << '\n' ;
+    cout << "================\n" ;
+    cout << "================\n" ;
+    cout << "Predecessor for (20) : " << tree2.predecessor(20) << '\n' ;
+    cout << "Predecessor for (14) : " << tree2.predecessor(14) << '\n' ;
+    cout << "Predecessor for (9)  : " << tree2.predecessor(9) << '\n' ;
+    cout << "Predecessor for (1)  : " << tree2.predecessor(1) << '\n' ;
+
 
     return 0;
 }
