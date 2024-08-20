@@ -1,6 +1,7 @@
 #ifndef BINARYSEARCHTREE_H
 #define BINARYSEARCHTREE_H
 
+#include <vector>
 using namespace std;
 
 template<class dataType>
@@ -26,14 +27,17 @@ private:
     bool searchHelper(Node<dataType>* curr , dataType value ) ;
     dataType getMaxHelper(Node<dataType>* curr) ;
     dataType getMinHelper(Node<dataType>* curr) ;
+    dataType successorHelper(Node<dataType>* curr , dataType value) ;
+    Node<dataType>* searchForSuccessor(Node<dataType>* curr , dataType value) ;
 
 public:
     BinarySearchTree() ;
     ~BinarySearchTree() ;
     void insert(dataType value) ;
     void remove(dataType value) ;
-    bool isEmpty() ;
     bool isExist(dataType value) ;
+    dataType successor(dataType value ) ;
+    bool isEmpty() ;
     dataType getMax() ;
     dataType getMin() ;
     void printInOrder() ;
