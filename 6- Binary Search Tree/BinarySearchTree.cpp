@@ -146,13 +146,13 @@ dataType BinarySearchTree<dataType>::getMaxHelper(Node<dataType> *curr) {
 // =====================================
 
 template<class dataType>
-Node<dataType> *BinarySearchTree<dataType>::searchForSuccessor(Node<dataType>* curr , dataType value) {
+Node<dataType> *BinarySearchTree<dataType>::searchForNode(Node<dataType>* curr , dataType value) {
     if (curr->data == value)
         return curr ;
     if (value > curr->data)
-        return searchForSuccessor(curr->right , value) ;
+        return searchForNode(curr->right , value) ;
     if (value < curr->data)
-        return searchForSuccessor(curr->left , value) ;
+        return searchForNode(curr->left , value) ;
 
     return nullptr;
 }
@@ -179,6 +179,29 @@ dataType BinarySearchTree<dataType>::successorHelper(Node<dataType> *curr, dataT
         return successor->data ;
 
     return -1 ;
+}
+
+// =====================================
+
+template<class dataType>
+dataType BinarySearchTree<dataType>::predecessorHelper(Node<dataType> *curr, dataType value) {
+    if (curr->left)
+        return getMaxHelper(curr->left);
+
+
+    Node<dataType>* predecessor = nullptr;
+    Node<dataType>* ancestor = root;
+
+    while (ancestor != nullptr) {
+        if (value > ancestor->data) {
+            predecessor = ancestor;
+            ancestor = ancestor->right;
+        } else {
+            ancestor = ancestor->left;
+        }
+    }
+
+    return predecessor ? predecessor->data : -1 ;
 }
 
 
@@ -307,10 +330,19 @@ void BinarySearchTree<dataType> :: clear() {
 
 template<class dataType>
 dataType BinarySearchTree<dataType>::successor(dataType value) {
-    Node<dataType>* curr = searchForSuccessor(root , value) ;
+    Node<dataType>* curr = searchForNode(root , value) ;
     if (!curr)
         return -1 ;
     return successorHelper(curr , value) ;
+}
+
+
+template<class dataType>
+dataType BinarySearchTree<dataType>::predecessor(dataType value) {
+    Node<dataType>* curr = searchForNode(root , value) ;
+    if (!curr)
+        return -1 ;
+    return predecessorHelper(curr , value) ;
 }
 
 
