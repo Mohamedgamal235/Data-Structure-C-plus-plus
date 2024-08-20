@@ -56,5 +56,20 @@ int main() {
     tree.printInOrder();                    // 15 45 50 60 73
     cout << "\n================\n" ;
 
+    BinarySearchTree<int> tree2 ;
+    tree2.insert(15);
+    tree2.insert(20);
+    tree2.insert(6);
+    tree2.insert(8);
+    tree2.insert(10);
+    tree2.insert(14);
+    tree2.insert(9);
+    tree2.insert(1);
+    
+    cout << tree2.successor(20) << '\n' ; // -1
+    cout << tree2.successor(14) << '\n' ; // 15
+    cout << tree2.successor(8) << '\n' ; // 9
+    cout << "\n================\n" ;
+
     return 0;
 }
