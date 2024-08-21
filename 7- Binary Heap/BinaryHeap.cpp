@@ -139,12 +139,22 @@ void BinaryHeap<dataType>::insert(dataType value) {
     heapifyUp(0) ;
 }
 
+////////////////////////////////////
 
 template<class dataType>
 void BinaryHeap<dataType> :: remove() {
+    if (isEmpty()) {
+        cout << "Heap is empty!\n" ;
+        return ;
+    }
     arr[0] = arr[top-1] ;
     top-- ;
     heapifyDown(0) ;
+}
+
+template<class dataType>
+bool BinaryHeap<dataType>::isEmpty() {
+    return (top == 0 );
 }
 
 ////////////////////////////////////
