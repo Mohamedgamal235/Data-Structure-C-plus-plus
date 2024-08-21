@@ -35,16 +35,31 @@ int BinaryHeap<dataType>::rightChild(int pos) {
 // ============================== //
 
 template<class dataType>
-void BinaryHeap<dataType> :: heapifyUp(int childPos) {
+void MinHeap<dataType> :: heapifyUp(int childPos) {
 
-    int pos = parent(childPos) ;
-    if (childPos == 0  || arr[pos] < arr[childPos])
+    int pos = this->parent(childPos) ;
+    if (childPos == 0  || this->arr[pos] < this->arr[childPos])
         return;
 
-    swap(arr[pos] , arr[childPos]);
+    swap(this->arr[pos] , this->arr[childPos]);
     heapifyUp(pos);
 }
 
+
+// ============================== //
+// ======== For Max Heap ======== //
+// ============================== //
+
+template<class dataType>
+void MaxHeap<dataType> :: heapifyUp(int childPos) {
+
+    int pos = this->parent(childPos) ;
+    if (childPos == 0  || this->arr[pos] > this->arr[childPos])
+        return;
+
+    swap(this->arr[pos] , this->arr[childPos]);
+    heapifyUp(pos);
+}
 
 
 // ========================================================================= //
