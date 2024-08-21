@@ -1,10 +1,12 @@
 #include "BinaryHeap.h"
+
 #include <iostream>
+#include <cassert>
 using namespace std;
 
-// ========================================================================= //
-// ================= Implementation Helper Functions ======================= //
-// ========================================================================= //
+// ======================================================================================================== //
+// ================================== Implementation Helper Functions ======================================= //
+// ======================================================================================================== //
 
 template<class dataType>
 int BinaryHeap<dataType>::parent(int pos) {
@@ -45,6 +47,29 @@ void MinHeap<dataType> :: heapifyUp(int childPos) {
     heapifyUp(pos);
 }
 
+//===============
+
+template<class dataType>
+void MinHeap<dataType>::heapifyDown(int parentPos) {
+    int leftPos = this->leftChild(parentPos) ;
+    int rightPos = this->rightChild(parentPos) ;
+
+    assert(leftPos >= 0 && rightPos >= 0) ;
+    assert(leftPos < this->top && rightPos < this->top ) ;
+
+    int smallestPos = parentPos ;
+    if (this->arr[smallestPos] > this->arr[leftPos])
+        smallestPos = leftPos ;
+
+    if (this->arr[smallestPos] > this->arr[rightPos])
+        smallestPos = rightPos ;
+
+    if (smallestPos != parentPos) {
+        swap(this->arr[smallestPos] , this->arr[parentPos]) ;
+        heapifyDown(smallestPos);
+    }
+}
+
 
 // ============================== //
 // ======== For Max Heap ======== //
@@ -61,10 +86,33 @@ void MaxHeap<dataType> :: heapifyUp(int childPos) {
     heapifyUp(pos);
 }
 
+//===============
 
-// ========================================================================= //
-// ================= Implementation User Functions ========================= //
-// ========================================================================= //
+template<class dataType>
+void MaxHeap<dataType>::heapifyDown(int parentPos) {
+    int leftPos = this->leftChild(parentPos) ;
+    int rightPos = this->rightChild(parentPos) ;
+
+    assert(leftPos >= 0 && rightPos >= 0) ;
+    assert(leftPos < this->top && rightPos < this->top ) ;
+
+    int largestPos = parentPos ;
+    if (this->arr[largestPos] < this->arr[leftPos])
+        largestPos = leftPos ;
+
+    if (this->arr[largestPos] < this->arr[rightPos])
+        largestPos = rightPos ;
+
+    if (largestPos != parentPos) {
+        swap(this->arr[largestPos] , this->arr[parentPos]) ;
+        heapifyDown(largestPos);
+    }
+}
+
+
+// ======================================================================================================== //
+// ================================== Implementation User Functions ======================================= //
+// ======================================================================================================== //
 
 template<class dataType>
 BinaryHeap<dataType>::BinaryHeap() {
@@ -73,11 +121,14 @@ BinaryHeap<dataType>::BinaryHeap() {
     size = 0 ;
 }
 
+////////////////////////////////////
+
 template<class dataType>
 BinaryHeap<dataType>::~BinaryHeap() {
     clear() ;
 }
 
+////////////////////////////////////
 
 template<class dataType>
 void BinaryHeap<dataType>::insert(dataType value) {
@@ -88,11 +139,22 @@ void BinaryHeap<dataType>::insert(dataType value) {
     heapifyUp(0) ;
 }
 
+
+template<class dataType>
+void BinaryHeap<dataType> :: remove() {
+    arr[0] = arr[top-1] ;
+    top-- ;
+    heapifyDown(0) ;
+}
+
+////////////////////////////////////
+
 template<class dataType>
 int BinaryHeap<dataType> :: size() {
     return top ;
 }
 
+////////////////////////////////////
 
 template<class dataType>
 void BinaryHeap<dataType> :: clear() {
@@ -100,6 +162,7 @@ void BinaryHeap<dataType> :: clear() {
     top = 0 ;
 }
 
+////////////////////////////////////
 
 
 
