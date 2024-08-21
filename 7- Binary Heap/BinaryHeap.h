@@ -24,6 +24,7 @@ public:
     int size() ;
     void insert(dataType value) ;
     void remove() ; // delete min element in min heap or max element in max heap
+    bool isEmpty() ;
 
 };
 
