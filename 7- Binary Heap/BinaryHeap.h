@@ -25,7 +25,7 @@ public:
     void insert(dataType value) ;
     void remove() ; // delete min element in min heap or max element in max heap
     bool isEmpty() ;
-
+    virtual void print() ;
 };
 
 
@@ -34,6 +34,8 @@ class MinHeap : public BinaryHeap<dataType>{
 protected:
     void heapifyUp(int childPos);
     void heapifyDown(int parentPos);
+public:
+    void print() ;
 
 };
 
@@ -43,6 +45,8 @@ class MaxHeap : public BinaryHeap<dataType>{
 protected:
     void heapifyUp(int childPos);
     void heapifyDown(int parentPos);
+public:
+    void print() ;
 };
 
 #endif //BINARYHEAP_H
