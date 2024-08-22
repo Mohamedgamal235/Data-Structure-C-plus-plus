@@ -175,6 +175,36 @@ void BinaryHeap<dataType> :: clear() {
 ////////////////////////////////////
 
 
+// ============================== //
+// ======== For Max Heap ======== //
+// ============================== //
+
+template<class dataType>
+void MaxHeap<dataType>::print() {
+    if (this->isEmpty()) {
+        cout << "Heap is empty!\n" ;
+        return ;
+    }
+    for (int i = 0 ; i < this->top ; i++)
+        cout << this->arr[i] << ' ' ;
+    cout << '\n' ;
+}
+
+// ============================== //
+// ======== For Min Heap ======== //
+// ============================== //
+
+template<class dataType>
+void MinHeap<dataType>::print() {
+    if (this->isEmpty()) {
+        cout << "Heap is empty!\n" ;
+        return ;
+    }
+    for (int i = 0 ; i < this->top ; i++)
+        cout << this->arr[i] << ' ' ;
+    cout << '\n' ;
+}
+
 
 
 
