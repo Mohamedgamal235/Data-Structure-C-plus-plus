@@ -13,8 +13,8 @@ protected: // to inherit this class for Min and Max Heap classes
     int leftChild(int pos ) ;
     int rightChild(int pos ) ;
 
-    virtual void heapifyUp(int childPos);
-    virtual void heapifyDown(int parentPos ) ;
+    virtual void heapifyUp(int childPos) = 0 ;
+    virtual void heapifyDown(int parentPos ) = 0;
     void resizeHeap() ;
 
 public:
@@ -25,7 +25,6 @@ public:
     void insert(dataType value) ;
     void remove() ; // delete min element in min heap or max element in max heap
     bool isEmpty() ;
-    virtual void print() ;
 };
 
 
