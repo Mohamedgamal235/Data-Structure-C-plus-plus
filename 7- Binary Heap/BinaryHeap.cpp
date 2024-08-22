@@ -1,5 +1,4 @@
 #include "BinaryHeap.h"
-
 #include <iostream>
 #include <cassert>
 using namespace std;
@@ -66,9 +65,6 @@ void MinHeap<dataType>::heapifyDown(int parentPos) {
     int leftPos = this->leftChild(parentPos) ;
     int rightPos = this->rightChild(parentPos) ;
 
-    assert(leftPos >= 0 && rightPos >= 0) ;
-    assert(leftPos < this->top && rightPos < this->top ) ;
-
     int smallestPos = parentPos ;
     if (this->arr[smallestPos] > this->arr[leftPos])
         smallestPos = leftPos ;
@@ -105,8 +101,6 @@ void MaxHeap<dataType>::heapifyDown(int parentPos) {
     int leftPos = this->leftChild(parentPos) ;
     int rightPos = this->rightChild(parentPos) ;
 
-    assert(leftPos >= 0 && rightPos >= 0) ;
-    assert(leftPos < this->top && rightPos < this->top ) ;
 
     int largestPos = parentPos ;
     if (this->arr[largestPos] < this->arr[leftPos])
@@ -147,8 +141,8 @@ void BinaryHeap<dataType>::insert(dataType value) {
     if (top == capacity)
         resizeHeap();
     arr[top] = value ;
+    heapifyUp(top) ;
     top++ ;
-    heapifyUp(0) ;
 }
 
 ////////////////////////////////////
