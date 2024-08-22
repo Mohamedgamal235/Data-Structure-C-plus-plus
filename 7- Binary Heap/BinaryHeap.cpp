@@ -29,7 +29,19 @@ int BinaryHeap<dataType>::rightChild(int pos) {
 
 //========
 
+template<class dataType>
+void BinaryHeap<dataType>::resizeHeap() {
+    capacity *= 2;
 
+    dataType* newArr = new dataType[capacity];
+
+    for (int i = 0; i < top; i++) {
+        newArr[i] = arr[i];
+    }
+
+    delete[] arr;
+    arr = newArr;
+}
 
 
 // ============================== //
@@ -118,7 +130,7 @@ template<class dataType>
 BinaryHeap<dataType>::BinaryHeap() {
     capacity = 1000 ;
     arr = new dataType [capacity] ;
-    size = 0 ;
+    top = 0 ;
 }
 
 ////////////////////////////////////
