@@ -51,6 +51,39 @@ int Node<dataType>::balanceFactor() {
 // ============================================================ //
 
 
+template<class dataType>
+Node<dataType> *AVLTree<dataType>::insertHelper(dataType value, Node<dataType> *curr) {
+    if (value > curr->data) {
+        if (!curr->right)
+            curr->right = new Node<dataType>(value) ;
+        else
+            curr->right = insertHelper(value , curr->right) ;
+    }
+    else if (value < curr->data) {
+        if (!curr->left)
+            curr->left = new Node<dataType>(value) ;
+        else
+            curr->left = insertHelper(value , curr->left);
+    }
+
+    curr->updateHeghit();
+    curr = makeBalance(curr) ;
+    return curr ;
+}
+
+// ============================================================ //
+// ============== Implementation user Functions =============== //
+// ============================================================ //
+
+
+template<class dataType>
+void AVLTree<dataType>::insert(dataType value) {
+    if (!root)
+        root = new Node<dataType>(value) ;
+    else
+        root = insertHelper(value , root ) ;
+}
+
 
 
 
