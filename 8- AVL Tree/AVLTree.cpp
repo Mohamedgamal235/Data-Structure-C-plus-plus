@@ -52,6 +52,27 @@ int Node<dataType>::balanceFactor() {
 
 
 template<class dataType>
+Node<dataType> *AVLTree<dataType>::makeBalance(Node<dataType> *curr) {
+    // i have 4 imbalance cases : R -> right , L -> left
+    // RR , LL , RL , LR
+
+    if (curr->balanceFactor() == 2) { // L
+        if (curr->left->balanceFactor() == -1) // LR or not ???
+            curr->left = leftRotation(curr->left) ;
+
+        curr = rightRotation(curr) ; // balance LL
+    }
+    else if (curr->balanceFactor() == -2) { // R
+        if (curr->right->balanceFactor() == 1 ) // RL or Not ???
+            curr->right = rightRotation(curr->right) ;
+
+        curr = leftRotation(curr) ;
+    }
+
+    return curr ;
+}
+
+template<class dataType>
 Node<dataType> *AVLTree<dataType>::insertHelper(dataType value, Node<dataType> *curr) {
     if (value > curr->data) {
         if (!curr->right)
