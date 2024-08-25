@@ -50,9 +50,28 @@ int Node<dataType>::balanceFactor() {
 // ============== Implementation Helper Functions ============= //
 // ============================================================ //
 
+template<class dataType>
+Node<dataType>* AVLTree<dataType>::leftRotation(Node<dataType> *parent) {
+    Node<dataType>* child = parent->right ;
+    parent->right = child->left ;
+    child->left = parent ;
+    parent->updateHeghit() ;
+    child->updateHeghit() ;
+    return child ;
+}
 
 template<class dataType>
-Node<dataType> *AVLTree<dataType>::makeBalance(Node<dataType> *curr) {
+Node<dataType>* AVLTree<dataType>::rightRotation(Node<dataType> *child ) {
+    Node<dataType>* parent = child->right ;
+    child->left = parent->right ;
+    parent->right = child ;
+    parent->updateHeghit();
+    child->updateHeghit();
+    return parent ;
+}
+
+template<class dataType>
+Node<dataType>* AVLTree<dataType>::makeBalance(Node<dataType> *curr) {
     // i have 4 imbalance cases : R -> right , L -> left
     // RR , LL , RL , LR
 
