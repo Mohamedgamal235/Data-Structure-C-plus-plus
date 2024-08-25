@@ -18,6 +18,8 @@ template<class dataType>
 class AVLTree {
 private:
     Node<dataType>* root ;
+    Node<dataType>* leftRotation(Node<dataType>* P) ;
+    Node<dataType>* rightRotation(Node<dataType>* Q) ;
     
     Node<dataType>* insertHelper(dataType value , Node<dataType>* curr) ;
 
