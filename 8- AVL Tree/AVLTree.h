@@ -21,7 +21,7 @@ private:
     Node<dataType>* rightRotation(Node<dataType>* Q) ;
     Node<dataType>* makeBalance(Node<dataType>* curr) ;
     Node<dataType>* insertHelper(dataType value , Node<dataType>* curr) ;
-    Node<dataType>* clearHelper(Node<dataType>* curr) ;
+    void clearHelper(Node<dataType>* curr) ;
 
 public:
     AVLTree();
