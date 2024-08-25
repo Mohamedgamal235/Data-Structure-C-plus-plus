@@ -111,6 +111,18 @@ Node<dataType> *AVLTree<dataType>::insertHelper(dataType value, Node<dataType> *
     return curr ;
 }
 
+
+template<class dataType>
+void AVLTree<dataType>::clearHelper(Node<dataType> *curr) {
+    if (!curr)
+        return ;
+
+    clearHelper(curr->left) ;
+    clearHelper(curr->right) ;
+    clearHelper(curr) ;
+}
+
+
 // ============================================================ //
 // ============== Implementation user Functions =============== //
 // ============================================================ //
@@ -123,7 +135,7 @@ AVLTree<dataType>::AVLTree() {
 
 template<class dataType>
 AVLTree<dataType>::~AVLTree() {
-    // clear() ; 
+    clear() ;
 }
 
 
@@ -135,24 +147,10 @@ void AVLTree<dataType>::insert(dataType value) {
         root = insertHelper(value , root ) ;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+template<class dataType>
+void AVLTree<dataType>::clear() {
+    clearHelper(root) ;
+}
 
 
 
