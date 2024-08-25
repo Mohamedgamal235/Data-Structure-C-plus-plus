@@ -1,4 +1,3 @@
-
 #ifndef AVLTREE_H
 #define AVLTREE_H
 
@@ -20,13 +19,15 @@ private:
     Node<dataType>* root ;
     Node<dataType>* leftRotation(Node<dataType>* P) ;
     Node<dataType>* rightRotation(Node<dataType>* Q) ;
-    Node<dataType>* makeBalance(Node<dataType>* curr) ; 
+    Node<dataType>* makeBalance(Node<dataType>* curr) ;
     Node<dataType>* insertHelper(dataType value , Node<dataType>* curr) ;
+    Node<dataType>* clearHelper(Node<dataType>* curr) ;
 
 public:
     AVLTree();
     ~AVLTree();
     void insert(dataType value) ;
+    void clear() ;
 };
 
 
