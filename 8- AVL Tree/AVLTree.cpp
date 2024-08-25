@@ -117,6 +117,17 @@ Node<dataType> *AVLTree<dataType>::insertHelper(dataType value, Node<dataType> *
 
 
 template<class dataType>
+AVLTree<dataType>::AVLTree() {
+    root = nullptr ;
+}
+
+template<class dataType>
+AVLTree<dataType>::~AVLTree() {
+    // clear() ; 
+}
+
+
+template<class dataType>
 void AVLTree<dataType>::insert(dataType value) {
     if (!root)
         root = new Node<dataType>(value) ;
