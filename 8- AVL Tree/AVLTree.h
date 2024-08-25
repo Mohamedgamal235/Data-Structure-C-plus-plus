@@ -20,7 +20,7 @@ private:
     Node<dataType>* root ;
     Node<dataType>* leftRotation(Node<dataType>* P) ;
     Node<dataType>* rightRotation(Node<dataType>* Q) ;
-    
+    Node<dataType>* makeBalance(Node<dataType>* curr) ; 
     Node<dataType>* insertHelper(dataType value , Node<dataType>* curr) ;
 
 public:
