@@ -33,6 +33,18 @@ void Trie::insert(string str, int idx) {
 }
 
 
+//------------
+
+bool Trie::wordExist(string str, int idx) {
+    if (idx == str.size())
+        return isLeaf ;
+
+    int curr = str[idx] - 'a' ;
+    if (child[curr] == 0)
+        return false ;
+
+    child[curr]->wordExist(str , idx+1) ; 
+}
 
 
 
