@@ -32,6 +32,8 @@ public:
     ~AVLTree();
     void insert(dataType value) ;
     void remove(dataType value) ;
+    dataType getMax() ;
+    dataType getMin() ;
     void clear() ;
 };
 
