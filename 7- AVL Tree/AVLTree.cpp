@@ -60,6 +60,8 @@ Node<dataType>* AVLTree<dataType>::leftRotation(Node<dataType> *parent) {
     return child ;
 }
 
+//-----------------
+
 template<class dataType>
 Node<dataType>* AVLTree<dataType>::rightRotation(Node<dataType> *child ) {
     Node<dataType>* parent = child->right ;
@@ -69,6 +71,8 @@ Node<dataType>* AVLTree<dataType>::rightRotation(Node<dataType> *child ) {
     child->updateHeghit();
     return parent ;
 }
+
+//-----------------
 
 template<class dataType>
 Node<dataType>* AVLTree<dataType>::makeBalance(Node<dataType> *curr) {
@@ -91,6 +95,8 @@ Node<dataType>* AVLTree<dataType>::makeBalance(Node<dataType> *curr) {
     return curr ;
 }
 
+//-----------------
+
 template<class dataType>
 Node<dataType> *AVLTree<dataType>::insertHelper(dataType value, Node<dataType> *curr) {
     if (value > curr->data) {
@@ -111,6 +117,28 @@ Node<dataType> *AVLTree<dataType>::insertHelper(dataType value, Node<dataType> *
     return curr ;
 }
 
+//-----------------
+
+template<class dataType>
+dataType AVLTree<dataType>::getMaxHelper(Node<dataType> *curr) {
+    if (!curr->right)
+        return curr->data ;
+
+    return getMaxHelper(curr->right) ;
+}
+
+//-----------------
+
+template<class dataType>
+dataType AVLTree<dataType>::getMinHelper(Node<dataType> *curr) {
+    if (!curr->left)
+        return curr->data ;
+
+    return getMinHelper(curr->left) ;
+}
+
+
+//-----------------
 
 template<class dataType>
 void AVLTree<dataType>::clearHelper(Node<dataType> *curr) {
@@ -148,9 +176,44 @@ void AVLTree<dataType>::insert(dataType value) {
 }
 
 template<class dataType>
+void AVLTree<dataType>::remove(dataType value) {
+   root = removeHelper(root , value) ;
+}
+
+template<class dataType>
+dataType AVLTree<dataType>::getMax() {
+    return getMaxHelper(root) ;
+}
+
+template<class dataType>
+dataType AVLTree<dataType>::getMin() {
+    return getMinHelper(root) ;
+}
+
+
+template<class dataType>
 void AVLTree<dataType>::clear() {
     clearHelper(root) ;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
