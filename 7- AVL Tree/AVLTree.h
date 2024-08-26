@@ -21,12 +21,15 @@ private:
     Node<dataType>* rightRotation(Node<dataType>* Q) ;
     Node<dataType>* makeBalance(Node<dataType>* curr) ;
     Node<dataType>* insertHelper(dataType value , Node<dataType>* curr) ;
+    Node<dataType>* specialDelete(Node<dataType> *curr  , Node<dataType>* child) ;
+    Node<dataType>* removeHelper(Node<dataType>* curr , dataType value) ;
     void clearHelper(Node<dataType>* curr) ;
 
 public:
     AVLTree();
     ~AVLTree();
     void insert(dataType value) ;
+    void remove(dataType value) ; 
     void clear() ;
 };
 
