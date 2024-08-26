@@ -1,70 +1,58 @@
 #include "Trie.h"
 
-#include <string.h>
-
-const int Trie::MAX_CHAR = 26 ;
-
-//------------
-
 Trie::Trie() {
-    isLeaf = false ;
-    // make set an array to zeros .
-    memset(child , 0 , sizeof(child)) ;
+    isLeaf = false;
+    memset(child, 0, sizeof(child));
 }
 
-//------------
+//-----------------
 
 Trie::~Trie() {
-    delete[] child ;
+    for (int i = 0; i < MAX_CHAR; i++) {
+        if (child[i] != nullptr) {
+            delete child[i];
+        }
+    }
 }
 
-//------------
+//-----------------
 
 void Trie::insert(string str, int idx) {
     if (idx == str.size()) {
-        isLeaf = true ;
-        return ;
+        isLeaf = true;
+        return;
     }
 
-    int curr = str[idx] - 'a' ;
-    if (child[curr] == 0)
-        child[curr] = new Trie() ;
-    child[curr]->insert(str , idx + 1 ) ;
+    int curr = str[idx] - 'a';
+    if (child[curr] == nullptr)
+        child[curr] = new Trie();
+
+    child[curr]->insert(str, idx + 1);
 }
 
-
-//------------
+//-----------------
 
 bool Trie::wordExist(string str, int idx) {
     if (idx == str.size())
-        return isLeaf ;
+        return isLeaf;
 
-    int curr = str[idx] - 'a' ;
-    if (child[curr] == 0)
-        return false ;
+    int curr = str[idx] - 'a';
+    if (child[curr] == nullptr)
+        return false;
 
-    child[curr]->wordExist(str , idx+1) ; 
+    return child[curr]->wordExist(str, idx + 1);
 }
 
+//-----------------
 
+bool Trie::prefixExist(string str, int idx) {
+    if (idx == str.size())
+        return true;
 
+    int curr = str[idx] - 'a';
+    if (child[curr] == nullptr)
+        return false;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    return child[curr]->prefixExist(str, idx + 1);
+}
 
