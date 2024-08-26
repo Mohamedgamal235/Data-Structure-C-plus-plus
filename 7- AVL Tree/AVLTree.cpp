@@ -51,6 +51,40 @@ int Node<dataType>::balanceFactor() {
 // ============== Implementation Helper Functions ============= //
 // ============================================================ //
 
+
+template<class dataType>
+void AVLTree<dataType> :: inOrder(Node<dataType>* curr) {
+    if (!curr)
+        return;
+    inOrder(curr->left);
+    cout << curr->data << ' ' ;
+    inOrder(curr->right);
+}
+
+//----------------------
+
+template<class dataType>
+void AVLTree<dataType>::inPre(Node<dataType> *curr) {
+    if (!curr)
+        return;
+    cout << curr->data << ' ' ;
+    inPre(curr->left) ;
+    inPre(curr->right) ;
+}
+
+//----------------------
+
+template<class dataType>
+void AVLTree<dataType>::inPost(Node<dataType> *curr) {
+    if (!curr)
+        return;
+    inPost(curr->left) ;
+    inPost(curr->right) ;
+    cout << curr->data << ' ' ;
+}
+
+//----------------------
+
 template<class dataType>
 Node<dataType>* AVLTree<dataType>::leftRotation(Node<dataType> *parent) {
     Node<dataType>* child = parent->right ;
@@ -61,7 +95,7 @@ Node<dataType>* AVLTree<dataType>::leftRotation(Node<dataType> *parent) {
     return child ;
 }
 
-//-----------------
+//----------------------
 
 template<class dataType>
 Node<dataType>* AVLTree<dataType>::rightRotation(Node<dataType> *child ) {
@@ -73,7 +107,7 @@ Node<dataType>* AVLTree<dataType>::rightRotation(Node<dataType> *child ) {
     return parent ;
 }
 
-//-----------------
+//----------------------
 
 template<class dataType>
 Node<dataType>* AVLTree<dataType>::makeBalance(Node<dataType> *curr) {
@@ -96,7 +130,7 @@ Node<dataType>* AVLTree<dataType>::makeBalance(Node<dataType> *curr) {
     return curr ;
 }
 
-//-----------------
+//----------------------
 
 template<class dataType>
 Node<dataType> *AVLTree<dataType>::insertHelper(dataType value, Node<dataType> *curr) {
@@ -118,7 +152,7 @@ Node<dataType> *AVLTree<dataType>::insertHelper(dataType value, Node<dataType> *
     return curr ;
 }
 
-//-----------------
+//----------------------
 
 template<class dataType>
 Node<dataType> *AVLTree<dataType>::specialDelete(Node<dataType> *curr, Node<dataType> *child) {
@@ -131,7 +165,7 @@ Node<dataType> *AVLTree<dataType>::specialDelete(Node<dataType> *curr, Node<data
     return curr ;
 }
 
-//-----------------
+//----------------------
 
 template<class dataType>
 Node<dataType> *AVLTree<dataType>::removeHelper(Node<dataType> *curr, dataType value) {
@@ -170,7 +204,7 @@ Node<dataType> *AVLTree<dataType>::removeHelper(Node<dataType> *curr, dataType v
 
 }
 
-//-----------------
+//----------------------
 
 template<class dataType>
 dataType AVLTree<dataType>::getMaxHelper(Node<dataType> *curr) {
@@ -180,7 +214,7 @@ dataType AVLTree<dataType>::getMaxHelper(Node<dataType> *curr) {
     return getMaxHelper(curr->right) ;
 }
 
-//-----------------
+//----------------------
 
 template<class dataType>
 dataType AVLTree<dataType>::getMinHelper(Node<dataType> *curr) {
@@ -191,7 +225,7 @@ dataType AVLTree<dataType>::getMinHelper(Node<dataType> *curr) {
 }
 
 
-//-----------------
+//----------------------
 
 template<class dataType>
 void AVLTree<dataType>::clearHelper(Node<dataType> *curr) {
@@ -218,7 +252,6 @@ template<class dataType>
 AVLTree<dataType>::~AVLTree() {
     clear() ;
 }
-
 
 template<class dataType>
 void AVLTree<dataType>::insert(dataType value) {
@@ -253,6 +286,39 @@ void AVLTree<dataType>::clear() {
     clearHelper(root) ;
 }
 
+
+////////////////////////////////////////////////////////
+
+template<class dataType>
+void AVLTree<dataType>::printInOrder() {
+    if (isEmpty()) {
+        cout << "Tree is empty\n";
+        return;
+    }
+    inOrder(root);
+}
+
+////////////////////////////////////////////////////////
+
+template<class dataType>
+void AVLTree<dataType>::printInPostOrder() {
+    if (isEmpty()) {
+        cout << "Tree is empty\n";
+        return;
+    }
+    inPost(root);
+}
+
+////////////////////////////////////////////////////////
+
+template<class dataType>
+void AVLTree<dataType>::printInPreOrder() {
+    if (isEmpty()) {
+        cout << "Tree is empty\n";
+        return;
+    }
+    inPre(root);
+}
 
 
 
