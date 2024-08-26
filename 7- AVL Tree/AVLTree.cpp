@@ -120,6 +120,53 @@ Node<dataType> *AVLTree<dataType>::insertHelper(dataType value, Node<dataType> *
 //-----------------
 
 template<class dataType>
+Node<dataType> *AVLTree<dataType>::specialDelete(Node<dataType> *curr, Node<dataType> *child) {
+    // Instead of deleting the node and returning its child, copy the child's data to the current node
+    // and then delete the child node. This prevents runtime errors when the node to be deleted is
+    // actually the root node or any other node that should not be deleted directly.
+    curr->data = child->data ;
+    curr->left = child->left ;
+    curr->right = child->right ;
+    return curr ;
+}
+
+//-----------------
+
+template<class dataType>
+Node<dataType> *AVLTree<dataType>::removeHelper(Node<dataType> *curr, dataType value) {
+    if (!curr)
+        return curr ;
+    if (value < curr->data)
+        curr->left = removeHelper(curr->left , value) ;
+    else if (value > curr->data)
+        curr->right = removeHelper(curr->right , value);
+    else {
+
+        // Case 1: Node with no children (leaf node)
+        if (!curr->left && !curr->right) {
+            delete curr ;
+            return nullptr ;
+        }
+
+        // Case 2: Node with only one child has node on (right)
+        if (!curr->left)
+            return specialDelete(curr , curr->right) ;
+
+        if (!curr->right)
+            return specialDelete(curr , curr->left) ;
+
+        // Case 3: Node with two children
+        curr->data = getMaxHelper(curr->left);
+        curr->left = removeHelper(curr->left , curr->data) ;
+    }
+
+    return curr ;
+
+}
+
+//-----------------
+
+template<class dataType>
 dataType AVLTree<dataType>::getMaxHelper(Node<dataType> *curr) {
     if (!curr->right)
         return curr->data ;
@@ -177,7 +224,7 @@ void AVLTree<dataType>::insert(dataType value) {
 
 template<class dataType>
 void AVLTree<dataType>::remove(dataType value) {
-   root = removeHelper(root , value) ;
+   root = removeHelper(root , value);
 }
 
 template<class dataType>
