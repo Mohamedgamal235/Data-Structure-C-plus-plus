@@ -7,7 +7,7 @@ using namespace std ;
 class Trie {
 private:
     static const int MAX_CHAR ;
-    Trie* child ;
+    Trie* child[MAX_CHAR];
     bool isLeaf ;
 
 public:
