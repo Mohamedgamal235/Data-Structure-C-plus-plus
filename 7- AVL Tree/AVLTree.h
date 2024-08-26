@@ -17,6 +17,9 @@ template<class dataType>
 class AVLTree {
 private:
     Node<dataType>* root ;
+    void inOrder(Node<dataType>* curr);
+    void inPre(Node<dataType>* curr);
+    void inPost(Node<dataType>* curr);
     Node<dataType>* leftRotation(Node<dataType>* P) ;
     Node<dataType>* rightRotation(Node<dataType>* Q) ;
     Node<dataType>* makeBalance(Node<dataType>* curr) ;
@@ -34,6 +37,9 @@ public:
     void remove(dataType value) ;
     dataType getMax() ;
     dataType getMin() ;
+    void printInOrder() ;
+    void printInPreOrder() ;
+    void printInPostOrder() ;
     void clear() ;
 };
 
