@@ -1,4 +1,5 @@
 #include "AVLTree.h"
+#include <iostream>
 using namespace std;
 
 // ======================================================================================================== //
@@ -160,6 +161,11 @@ Node<dataType> *AVLTree<dataType>::removeHelper(Node<dataType> *curr, dataType v
         curr->left = removeHelper(curr->left , curr->data) ;
     }
 
+    if (curr) {
+        curr->updateHeghit() ;
+        curr = makeBalance(curr) ;
+    }
+
     return curr ;
 
 }
@@ -224,6 +230,10 @@ void AVLTree<dataType>::insert(dataType value) {
 
 template<class dataType>
 void AVLTree<dataType>::remove(dataType value) {
+    if (!root) {
+        cout << "Tree is empty can't remove \n" ;
+        return;
+    }
    root = removeHelper(root , value);
 }
 
