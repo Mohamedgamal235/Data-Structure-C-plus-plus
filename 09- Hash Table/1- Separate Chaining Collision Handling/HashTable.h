@@ -26,8 +26,8 @@ private:
 public:
     HashTable(int size);
     void insert(const StudentData& student);
-    bool search(const string& name, StudentData& result) const;
-    bool remove(const string& name);
+    bool search(StudentData& student) const;
+    void remove(const StudentData &student);
     void print() const;
 };
 
