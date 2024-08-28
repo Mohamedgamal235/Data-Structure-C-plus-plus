@@ -81,7 +81,6 @@ bool HashTable::search(const StudentData &student) const {
     return false ; // if full and not found
 }
 
-
 //---------------
 
 void HashTable::remove(const StudentData &student) {
@@ -96,6 +95,17 @@ void HashTable::remove(const StudentData &student) {
     }
 
     cout << "Not found to remove \n" ;
+}
+
+//---------------
+
+void HashTable::print() const {
+    for (int i = 0 ; i < tableSize ; i++) {
+        if (occupied[i]) {
+            table[i].print() ;
+            cout << '\n' ;
+        }
+    }
 }
 
 
