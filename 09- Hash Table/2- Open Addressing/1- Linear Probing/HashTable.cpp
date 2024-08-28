@@ -23,83 +23,88 @@ int StudentData::hashFunction() const {
 }
 
 void StudentData::print() const {
-    cout << "Name: " << name << " , ID: " << studentID <<  " ||| " ;
-}
-
-int HashTable :: next(int idx) {
-    int newIndex = idx ;
-    while (occupied[newIndex])
-        newIndex = (newIndex + 1 ) % tableSize ;
-
-    return newIndex ;
+    cout << "Name: " << name << " , ID: " << studentID ;
 }
 
 // ==================================================== //
 // =========== Implementation of Class ================ //
 // ==================================================== //
 
-HashTable::HashTable(int size) : tableSize(size), table(size) {}
 
-// ---------
+HashTable::HashTable(int size) : tableSize(size), table(size), occupied(size, false) {}
+
+//---------------
 
 HashTable::~HashTable() {
-    table.clear() ;
-    tableSize = 0 ;
+    table.clear();
+    occupied.clear();
+    tableSize = 0;
 }
 
-// ---------
+//---------------
+
+int HashTable::next(int idx) const {
+    int newIndex = idx;
+    while (occupied[newIndex]) {
+        newIndex = (newIndex + 1) % tableSize;
+    }
+    return newIndex;
+}
+
+//---------------
 
 void HashTable::insert(const StudentData& student) {
-    int idx = student.hashFunction() % tableSize ;
+    int idx = student.hashFunction() % tableSize;
 
-    if (!occupied[idx])
-        table[idx] = student , occupied[idx] = true ;
-    else {
-        int newIdx = next(idx) ;
-        occupied[newIdx] = true ;
-        table[newIdx] = student ;
+    if (!occupied[idx]) {
+        table[idx] = student;
+        occupied[idx] = true;
+    } else {
+        int newIdx = next(idx);
+        occupied[newIdx] = true;
+        table[newIdx] = student;
     }
 }
 
-// ---------
+//---------------
 
-bool HashTable::search(StudentData &student) const {
-    int idx = student.hashFunction() % tableSize ;
+bool HashTable::search( const StudentData& student) const {
+    int idx = student.hashFunction() % tableSize;
 
-    for (int i = 0 ; i < tableSize ; i++) {
-        int currIdx = (idx + i ) % tableSize ;
-        if (occupied[currIdx] && table[currIdx].name == student.name)
-            return true ;
-
-        if (!occupied[currIdx])
-            break;
-    }
-
-    return false ;
-}
-
-
-// ---------
-
-void HashTable::remove(const StudentData &student) {
-    int idx = student.hashFunction() % tableSize ;
-
-    for (int i = 0 ; i < tableSize ; i++) {
-        int currIdx = (idx + i) % tableSize ; 
+    for (int i = 0; i < tableSize; i++) {
+        int currIdx = (idx + i) % tableSize;
         if (occupied[currIdx] && table[currIdx].name == student.name) {
-            occupied[currIdx] = false ;
-            return; 
+            return true;
         }
 
-        if (occupied[currIdx] == false) {
-            cout << "Not found to remove \n" ;
+        if (!occupied[currIdx]) {
+            break;
+        }
+    }
+
+    return false;
+}
+
+//---------------
+
+void HashTable::remove(const StudentData& student) {
+    int idx = student.hashFunction() % tableSize;
+
+    for (int i = 0; i < tableSize; i++) {
+        int currIdx = (idx + i) % tableSize;
+        if (occupied[currIdx] && table[currIdx].name == student.name) {
+            occupied[currIdx] = false;
+            return;
+        }
+
+        if (!occupied[currIdx]) {
+            cout << "Not found to remove\n";
             return;
         }
     }
 }
 
-
-// ------------------
+//---------------
 
 void HashTable::print() const {
     for (int i = 0; i < tableSize; i++) {
@@ -109,3 +114,10 @@ void HashTable::print() const {
         }
     }
 }
+
+
+
+
+
+
+
