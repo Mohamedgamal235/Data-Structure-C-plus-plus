@@ -4,13 +4,13 @@
 #include <vector>
 using namespace std ;
 
-struct StudentEntry {
+struct StudentData {
 private:
     static const int INTERNAL_LIMIT = 6000 ;
     string name ;
     string studentID ;
 
-    StudentEntry(string name , string studentID) ;
+    StudentData(string name , string studentID) ;
     int hashFunction() ;
     void print() ;
 };
@@ -25,7 +25,7 @@ public:
     void insert(StudentEntry &student) ;
     bool search(StudentEntry &student) ;
     void remove(StudentEntry &student) ;
-    void print() ; 
+    void print() ;
 
 };
 
