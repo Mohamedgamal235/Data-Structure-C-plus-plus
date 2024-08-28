@@ -60,3 +60,24 @@ void HashTable::insert(const StudentData& student) {
         table[newIdx] = student ;
     }
 }
+
+
+// ---------
+
+bool HashTable::search(StudentData &student) const {
+    int idx = student.hashFunction() % tableSize ;
+
+    for (int i = 0 ; i < tableSize ; i++) {
+        int currIdx = (idx + i ) % tableSize ;
+        if (occupied[currIdx] && table[currIdx].name == student.name)
+            return true ;
+
+        if (!occupied[currIdx])
+            break;
+    }
+
+    return false ;
+}
+
+
+
