@@ -1,34 +1,34 @@
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
+
 #include <iostream>
 #include <vector>
-using namespace std ;
+#include <string>
+
+using namespace std;
 
 struct StudentData {
-private:
-    static const int INTERNAL_LIMIT = 6000 ;
-    string name ;
-    string studentID ;
+public:
+    static const int INTERNAL_LIMIT = 6000;
+    string name;
+    string studentID;
 
-    StudentData(string name , string studentID) ;
-    int hashFunction() ;
-    void print() ;
+    StudentData(string name, string studentID);
+    int hashFunction() const;
+    void print() const;
 };
 
 class HashTable {
 private:
-    int tableSize ;
-    vector<vector<string>> table ;
+    int tableSize;
+    vector<vector<StudentData>> table;
 
 public:
     HashTable(int size);
-    void insert(StudentData &student) ;
-    bool search(StudentData &student) ;
-    void remove(StudentData &student) ;
-    void print() ;
-
+    void insert(const StudentData& student);
+    bool search(const string& name, StudentData& result) const;
+    bool remove(const string& name);
+    void print() const;
 };
 
-
-
-#endif //HASHTABLE_H
+#endif // HASHTABLE_H
