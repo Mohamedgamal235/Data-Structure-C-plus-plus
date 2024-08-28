@@ -10,12 +10,35 @@ long long hashString(string &str , int n) {
     return sum % bigN ;
 }
 
-StudentEntry::StudentEntry(string name, string studentID) {
+// ==================================================== //
+// =========== Implementation of  Struct ============== //
+// ==================================================== //
+
+StudentData::StudentData(string name, string studentID) {
     this->name = name ;
     this->studentID = studentID ;
 }
 
-int StudentEntry::hashFunction() {
+int StudentData::hashFunction() {
     return hashString(name , INTERNAL_LIMIT) ;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
