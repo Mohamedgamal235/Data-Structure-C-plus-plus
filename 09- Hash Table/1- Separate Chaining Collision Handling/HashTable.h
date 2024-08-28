@@ -1,5 +1,8 @@
+
+
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
+
 
 #include <iostream>
 #include <vector>
@@ -25,10 +28,13 @@ private:
 
 public:
     HashTable(int size);
+    ~HashTable();
     void insert(const StudentData& student);
     bool search(StudentData& student) const;
     void remove(const StudentData &student);
     void print() const;
 };
 
-#endif // HASHTABLE_H
+
+
+#endif //HASHTABLE_H

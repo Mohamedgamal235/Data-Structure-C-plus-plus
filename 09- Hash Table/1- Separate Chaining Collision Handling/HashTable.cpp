@@ -34,6 +34,13 @@ HashTable::HashTable(int size) : tableSize(size), table(size) {}
 
 // ---------
 
+HashTable::~HashTable() {
+    table.clear() ;
+    tableSize = 0 ;
+}
+
+// ---------
+
 void HashTable::insert(const StudentData& student) {
     int key = student.hashFunction() % tableSize;
 
