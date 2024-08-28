@@ -61,7 +61,6 @@ void HashTable::insert(const StudentData& student) {
     }
 }
 
-
 // ---------
 
 bool HashTable::search(StudentData &student) const {
@@ -78,6 +77,31 @@ bool HashTable::search(StudentData &student) const {
 
     return false ;
 }
+
+
+// ---------
+
+void HashTable::remove(const StudentData &student) {
+    int idx = student.hashFunction() % tableSize ;
+
+    for (int i = 0 ; i < tableSize ; i++) {
+        int currIdx = (idx + i) % tableSize ; 
+        if (occupied[currIdx] && table[currIdx].name == student.name) {
+            occupied[currIdx] = false ;
+            return; 
+        }
+
+        if (occupied[currIdx] == false) {
+            cout << "Not found to remove \n" ;
+            return;
+        }
+    }
+}
+
+
+
+
+
 
 
 
