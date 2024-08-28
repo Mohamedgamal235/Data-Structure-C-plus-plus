@@ -1,7 +1,6 @@
 #include <iostream>
-#include "HashTable.cpp"
+#include "HashTable.h"
 using namespace std;
-
 
 int main() {
 
@@ -15,11 +14,16 @@ int main() {
     table.insert(StudentData("mena" , "26548")) ;       // 6
 
     table.print() ;
-    cout << "///////////////////////////////////////////////////\n" ;
-    table.remove(StudentData("mona" , "2649")) ;
-    table.remove(StudentData("mena" , "26548")) ;
+
+    cout << "============================================================================\n" ;
+    table.remove(StudentData("mohamed" , "20220284" )) ;
+    cout << "After remove mohamed : \n" ;
 
     table.print() ;
+
+    cout << "============================================================================\n" ;
+    cout << "Search for mohamed : " << table.search(StudentData("mohamed" , "20220284")) << '\n' ;
+    cout << "Search for mena : " << table.search(StudentData("mena" , "26548")) << '\n' ;
 
 
     return 0;
