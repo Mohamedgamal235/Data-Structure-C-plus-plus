@@ -24,7 +24,22 @@ int StudentData::hashFunction() {
 }
 
 
+// ==================================================== //
+// =========== Implementation of  Class =============== //
+// ==================================================== //
 
+void HashTable::insert(StudentData &student) {
+    int key = student.hashFunction() % tableSize ;
+
+    for (auto &data : table[key]) {
+        if (data.name == student.name) {
+            student = data ;
+            return;
+        }
+    }
+
+    table[key].push_back(student) ; 
+}
 
 
 
