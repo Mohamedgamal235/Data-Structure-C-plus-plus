@@ -32,12 +32,15 @@ void StudentData::print() const {
 
 HashTable::HashTable(int size) : tableSize(size), table(size) {}
 
+// ---------
+
 void HashTable::insert(const StudentData& student) {
     int key = student.hashFunction() % tableSize;
 
+    cout << key << '\n' ;
     for (auto& data : table[key]) {
         if (data.name == student.name) {
-            data = student; 
+            data = student;
             return;
         }
     }
@@ -45,15 +48,37 @@ void HashTable::insert(const StudentData& student) {
     table[key].push_back(student);
 }
 
+bool HashTable::search(StudentData &student) const {
+    int key = student.hashFunction() % tableSize ;
+
+    for (auto &data : table[key]) {
+        if (data.name == student.name || data.studentID == student.studentID)
+            return true ; 
+    }
+
+    return false ; 
+}
+
+
+// ---------
 
 void HashTable::print() const {
     for (int hash = 0; hash < tableSize; hash++) {
         if (table[hash].empty())
             continue;
 
-        cout << "Hash " << hash << ": ";
+        cout << "Hash " << hash << '\n' ;
         for (const auto& student : table[hash]) {
             student.print();
         }
     }
 }
+
+// ---------
+
+
+
+
+
+
+
