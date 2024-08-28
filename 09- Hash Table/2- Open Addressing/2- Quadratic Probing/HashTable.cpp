@@ -64,7 +64,22 @@ void HashTable::insert(const StudentData &student) {
     cout << "Hash table is full \n" ; // if full not found any empty place to insert
 }
 
+//---------------
 
+bool HashTable::search(const StudentData &student) const {
+    int idx = student.hashFunction() % tableSize ;
+
+    for (int i = 0 ; i < tableSize ; i++) {
+        int currIdx = quadraticProbing(idx , i) ;
+        if (occupied[currIdx] && table[currIdx].name == student.name)
+            return true ;
+
+        if (!occupied[currIdx])
+            return false ;
+    }
+
+    return false ; // if full and not found
+}
 
 
 
