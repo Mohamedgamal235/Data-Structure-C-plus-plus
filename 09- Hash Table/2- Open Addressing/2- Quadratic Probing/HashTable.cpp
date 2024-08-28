@@ -47,6 +47,22 @@ int HashTable::quadraticProbing(int idx , int i) const {
     return (idx + i * i) % tableSize ;
 }
 
+//---------------
+
+void HashTable::insert(const StudentData &student) {
+    int idx = student.hashFunction() % tableSize ;
+
+    for (int i = 0 ; i < tableSize ;i++) {
+        int currIdx = quadraticProbing(idx , i) ;
+        if (!occupied[currIdx]) {
+            occupied[currIdx] = true ;
+            table[currIdx] = student ;
+            return;
+        }
+    }
+
+    cout << "Hash table is full \n" ; // if full not found any empty place to insert
+}
 
 
 
