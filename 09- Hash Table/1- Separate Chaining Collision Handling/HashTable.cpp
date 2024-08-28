@@ -52,11 +52,11 @@ bool HashTable::search(StudentData &student) const {
     int key = student.hashFunction() % tableSize ;
 
     for (auto &data : table[key]) {
-        if (data.name == student.name || data.studentID == student.studentID)
-            return true ; 
+        if (data.name == student.name && data.studentID == student.studentID)
+            return true ;
     }
 
-    return false ; 
+    return false ;
 }
 
 
