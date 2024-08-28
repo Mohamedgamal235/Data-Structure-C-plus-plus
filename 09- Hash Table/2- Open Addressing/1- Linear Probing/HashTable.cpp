@@ -99,9 +99,13 @@ void HashTable::remove(const StudentData &student) {
 }
 
 
+// ------------------
 
-
-
-
-
-
+void HashTable::print() const {
+    for (int i = 0; i < tableSize; i++) {
+        if (occupied[i]) {
+            table[i].print();
+            cout << '\n' ;
+        }
+    }
+}
