@@ -60,10 +60,3 @@ void HashTable::insert(const StudentData& student) {
         table[newIdx] = student ;
     }
 }
-
-
-
-
-
-
-
