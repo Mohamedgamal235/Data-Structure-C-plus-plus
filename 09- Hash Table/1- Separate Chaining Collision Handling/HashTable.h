@@ -22,9 +22,9 @@ private:
 
 public:
     HashTable(int size);
-    void insert(StudentEntry &student) ;
-    bool search(StudentEntry &student) ;
-    void remove(StudentEntry &student) ;
+    void insert(StudentData &student) ;
+    bool search(StudentData &student) ;
+    void remove(StudentData &student) ;
     void print() ;
 
 };
