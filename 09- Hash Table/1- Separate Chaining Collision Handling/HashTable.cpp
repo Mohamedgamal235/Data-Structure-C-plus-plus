@@ -23,7 +23,7 @@ int StudentData::hashFunction() const {
 }
 
 void StudentData::print() const {
-    cout << "Name: " << name << "\nID: " << studentID << "\n==============\n";
+    cout << "Name: " << name << " , ID: " << studentID <<  " ||| " ;
 }
 
 // ==================================================== //
@@ -71,11 +71,23 @@ void HashTable::print() const {
         for (const auto& student : table[hash]) {
             student.print();
         }
+        cout << "\n=====================\n" ;
     }
 }
 
 // ---------
 
+void HashTable::remove( const StudentData &student) {
+    int key = student.hashFunction() % tableSize ;
+
+    for (int i = 0 ; i < table[key].size() ;i++) {
+        if (table[key][i].name == student.name ) {
+            swap(table[key][i] , table[key].back()) ;
+            table[key].pop_back() ;
+            return;
+        }
+    }
+}
 
 
 
