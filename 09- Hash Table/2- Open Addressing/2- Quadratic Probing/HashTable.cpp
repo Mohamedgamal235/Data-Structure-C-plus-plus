@@ -82,6 +82,22 @@ bool HashTable::search(const StudentData &student) const {
 }
 
 
+//---------------
+
+void HashTable::remove(const StudentData &student) {
+    int idx = student.hashFunction() % tableSize ;
+
+    for (int i = 0 ; i < tableSize ; i++) {
+        int currIdx = quadraticProbing(idx , i) ;
+        if (occupied[currIdx] && table[currIdx].name == student.name) {
+            occupied[currIdx] = false ;
+            return;
+        }
+    }
+
+    cout << "Not found to remove \n" ;
+}
+
 
 
 
