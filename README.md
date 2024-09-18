@@ -55,7 +55,6 @@ watch from [here](https://youtu.be/86mQ1gD3Zgg?si=j2qrPQcUBqWEbYzO) from 90 to 9
 some interviews ask about implementation of Trie okay , you can watch this [playlist](https://www.youtube.com/playlist?list=PLEJXowNB4kPyi859E6qGUs7jlpQehJndl) to more understand and i suggest see my code 
 
 
-https://youtu.be/Lrg6jm_a0zw?si=MivxCvgV_glvcmn8
 ## Hashing
 * [Hash Table](https://github.com/Mohamedgamal235/Data-Structure-C-plus-plus/tree/master/09-%20Hash%20Table)
     * [Separate Chaining Collision Handling](https://github.com/Mohamedgamal235/Data-Structure-C-plus-plus/tree/master/09-%20Hash%20Table/1-%20Separate%20Chaining%20Collision%20Handling)
