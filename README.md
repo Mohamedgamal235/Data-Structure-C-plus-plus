@@ -64,7 +64,9 @@ watch from [here](https://youtu.be/Lrg6jm_a0zw?si=DCwTuvVUBVeYNiR0) from 115 to 
 
 
 # Finaly 
-you can watch from any video and playlist , I am here give you some guide and tips to make way be easy , if you get any suggest to edit my code please send me.
+1. any code i write on this repo but not talk about it , so this seaction not mandatory this only if you wanna more practice okay like (Using two stacks).  
+2. you can watch from any video and playlist , I am here give you some guide and tips to make way be easy. 
+3. if you get any suggest to edit my code please send me.
 
 Best of luck godbay.
 
