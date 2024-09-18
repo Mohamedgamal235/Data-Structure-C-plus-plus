@@ -3,5 +3,5 @@ This repository provides guidelines and implementations of various data structur
 
 let's divide topics 
 ## Linked List 
-    - Singly Linkde List 
-    - Doubly Linked List 
+    * Singly Linkde List 
+    * Doubly Linked List 
