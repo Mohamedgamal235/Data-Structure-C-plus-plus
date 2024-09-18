@@ -3,8 +3,8 @@ This repository provides guidelines and implementations of various data structur
 
 let's divide topics 
 ## Linked List 
-* [Singly Linkde List] (https://github.com/Mohamedgamal235/Data-Structure-C-plus-plus/tree master/01-%20Linked%20List/Singly%20Linked%20List) 
-* [Doubly Linked List] (https://github.com/Mohamedgamal235/Data-Structure-C-plus-plus/tree/master/01-%20Linked%20List/Doubly%20Linked%20List) 
+* [Singly Linkde List](https://github.com/Mohamedgamal235/Data-Structure-C-plus-plus/tree/master/01-%20Linked%20List/Singly%20Linked%20List) 
+* [Doubly Linked List](https://github.com/Mohamedgamal235/Data-Structure-C-plus-plus/tree/master/01-%20Linked%20List/Doubly%20Linked%20List) 
 
 
 
