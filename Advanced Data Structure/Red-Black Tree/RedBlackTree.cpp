@@ -74,9 +74,74 @@ Node<dataType>* RedBlackTree<dataType>::insertHelper(Node<dataType> *curr, dataT
         curr->right = insertHelper(curr->right , value );
     else if (value < curr->data)
         curr->left = insertHelper(curr->left , value) ;
+    else
+        return curr ; // exist
 
-    return curr ;
+    return fixInsertion(curr) ;
 }
+
+//----------------------
+
+template<class dataType>
+void RedBlackTree<dataType>::fixInsertion(Node<dataType> *curr) {
+    // Base case : if the node is root , recolor it black.
+    if (curr == root) {
+        curr->color = "BLACK" ;
+        return;
+    }
+
+    // If the parent is black, no fix is needed
+    if (curr->parent->color == "BLACK")
+        return;
+
+    // Parent is red, so a violation exists.
+    Node<dataType>* parent = curr->parent ;
+    Node<dataType>* grandParent = parent->parent ;
+    Node<dataType>* uncle = (grandParent->left == parent) ? grandParent->right : grandParent->left ;
+
+
+    // Case 1 : Uncle is RED -> Recoloring
+    if (uncle && uncle->color == "RED") {
+        parent->color = "BLACK" ;
+        uncle->color = "BLACK" ;
+        grandParent->color = "RED" ;
+        fixInsertion(grandParent) ; // Recur on grandparent to fix the violation upwards
+    }
+    else {
+        // Case 2 and 3: Uncle is BLACK or NULL -> Rotations & Recolor
+        if (parent == grandParent->left) {
+            if (curr == parent->right) {
+                // Left-Right case
+                leftRotation(parent) ;
+                curr = parent ;
+                parent = curr->parent ;
+            }
+
+            // Left-Left case
+            grandParent = rightRotation(grandParent) ;
+            grandParent->color = "RED" ;
+            parent->color = "BLACK" ;
+        }
+        else {
+            if (curr == parent->left) {
+                // Right-Left case
+                rightRotation(parent) ;
+                curr = parent ;
+                parent = curr->parent ;
+            }
+
+            grandParent = leftRotation(grandParent) ;
+            parent->color = "BLACK" ;
+            grandParent->color = "RED" ;
+        }
+
+        if (grandParent == root)
+            root = parent ;
+    }
+
+
+}
+
 
 //----------------------
 
@@ -91,7 +156,7 @@ Node<dataType> *RedBlackTree<dataType>::getMaxHelper(Node<dataType>* curr) {
 //----------------------
 
 template<class dataType>
-Node<dataType> *RedBlackTree<dataType>::getMinHelper(Node<dataType>* curr) {
+Node<dataType>* RedBlackTree<dataType>::getMinHelper(Node<dataType>* curr) {
     if (!curr->left)
         return curr ;
 
@@ -119,6 +184,7 @@ void RedBlackTree<dataType>::clearHelper(Node<dataType> *curr) {
 template<class dataType>
 RedBlackTree<dataType>::RedBlackTree() {
     root = nullptr ;
+    root->color = "BLACK" ;
 }
 
 //----------------------
