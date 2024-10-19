@@ -45,39 +45,27 @@ void RedBlackTree<dataType>::inPost(Node<dataType> *curr) {
 //----------------------
 
 template<class dataType>
-Node<dataType>* RedBlackTree<dataType>::leftRotation(Node<dataType> *parent) {
+Node<dataType>* RedBlackTree<dataType>::leftRotation(Node<dataType>* parent) {
     Node<dataType>* child = parent->right;
     parent->right = child->left;
+    if (child->left) child->left->parent = parent;
+    child->parent = parent->parent;
     child->left = parent;
+    parent->parent = child;
     return child;
 }
 
 //----------------------
 
 template<class dataType>
-Node<dataType>* RedBlackTree<dataType>::rightRotation(Node<dataType> *child) {
+Node<dataType>* RedBlackTree<dataType>::rightRotation(Node<dataType>* child) {
     Node<dataType>* parent = child->left;
     child->left = parent->right;
+    if (parent->right) parent->right->parent = child;
+    parent->parent = child->parent;
     parent->right = child;
+    child->parent = parent;
     return parent;
-}
-
-
-//----------------------
-
-template<class dataType>
-Node<dataType>* RedBlackTree<dataType>::insertHelper(Node<dataType> *curr, dataType value) {
-    if (!curr)
-        return new Node<dataType>(value);
-
-    if (value > curr->data)
-        curr->right = insertHelper(curr->right , value );
-    else if (value < curr->data)
-        curr->left = insertHelper(curr->left , value) ;
-    else
-        return curr ; // exist
-
-    return fixInsertion(curr) ;
 }
 
 //----------------------
@@ -112,9 +100,7 @@ void RedBlackTree<dataType>::fixInsertion(Node<dataType> *curr) {
         if (parent == grandParent->left) {
             if (curr == parent->right) {
                 // Left-Right case
-                leftRotation(parent) ;
-                curr = parent ;
-                parent = curr->parent ;
+                parent = leftRotation(parent);
             }
 
             // Left-Left case
@@ -125,9 +111,7 @@ void RedBlackTree<dataType>::fixInsertion(Node<dataType> *curr) {
         else {
             if (curr == parent->left) {
                 // Right-Left case
-                rightRotation(parent) ;
-                curr = parent ;
-                parent = curr->parent ;
+                parent = rightRotation(parent);
             }
 
             grandParent = leftRotation(grandParent) ;
@@ -137,11 +121,31 @@ void RedBlackTree<dataType>::fixInsertion(Node<dataType> *curr) {
 
         if (grandParent == root)
             root = parent ;
+
+        root->color = "BLACK" ;
     }
 
 
 }
 
+//----------------------
+
+template<class dataType>
+Node<dataType>* RedBlackTree<dataType>::insertHelper(Node<dataType> *curr, dataType value) {
+    if (!curr)
+        return new Node<dataType>(value);
+
+    if (value > curr->data)
+        curr->right = insertHelper(curr->right , value );
+    else if (value < curr->data)
+        curr->left = insertHelper(curr->left , value) ;
+    else
+        return curr ; // exist
+
+    fixInsertion(curr); // After insertion, we need to check and fix violations
+
+    return curr ;
+}
 
 //----------------------
 
@@ -198,7 +202,7 @@ RedBlackTree<dataType>::~RedBlackTree() {
 
 template<class dataType>
 void RedBlackTree<dataType>::insert(dataType value) {
-    root = insertHelper(root , value ) ;
+    root = insertHelper(root , value) ;
 }
 
 //----------------------
