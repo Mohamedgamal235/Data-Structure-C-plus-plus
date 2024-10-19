@@ -24,12 +24,14 @@ template<class dataType>
 class RedBlackTree {
 private:
     Node<dataType>* root;
+    bool RL , LR , RR , LL ;
 
     // Helper functions
     Node<dataType>* insertHelper(Node<dataType>* curr, dataType value);
     Node<dataType>* removeHelper(Node<dataType>* curr, dataType value);
     Node<dataType>* getMaxHelper(Node<dataType>* curr);
     Node<dataType>* getMinHelper(Node<dataType>* curr);
+    Node<dataType>* specialDelete(Node<dataType>* curr , Node<dataType>* child) ;
     void clearHelper(Node<dataType>* curr);
 
     // Rotations
