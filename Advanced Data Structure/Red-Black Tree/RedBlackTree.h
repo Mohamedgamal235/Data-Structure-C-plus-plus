@@ -8,11 +8,14 @@ using namespace std ;
 template<class dataType>
 struct Node {
     dataType data ;
-    Node* left ;
-    Node* right ;
+    Node<dataType>* left ;
+    Node<dataType>* right ;
+    Node<dataType>* parent ;
+    string color ;
     Node(dataType data ) {
         left = right = nullptr ;
         this->data = data ;
+        color = "RED" ;
     }
 };
 
@@ -21,24 +24,40 @@ template<class dataType>
 class RedBlackTree {
 private:
     Node<dataType>* root;
+
+    // Helper functions
+    Node<dataType>* insertHelper(Node<dataType>* curr, dataType value);
+    Node<dataType>* removeHelper(Node<dataType>* curr, dataType value);
+    Node<dataType>* getMaxHelper(Node<dataType>* curr);
+    Node<dataType>* getMinHelper(Node<dataType>* curr);
+    void clearHelper(Node<dataType>* curr);
+
+    // Rotations
+    Node<dataType>* leftRotation(Node<dataType>* curr);
+    Node<dataType>* rightRotation(Node<dataType>* curr);
+
+    // Fix functions
+    void fixInsertion(Node<dataType>* newNode) ;
+    void fixDeletion(Node<dataType>* curr) ;
+
+    // Traversal functions
     void inOrder(Node<dataType>* curr);
     void inPre(Node<dataType>* curr);
     void inPost(Node<dataType>* curr);
-    Node<dataType>* rightRotation(Node<dataType>* child);
-    Node<dataType>* leftRotation(Node<dataType>* parent) ;
-    Node<dataType>* insertHelper(Node<dataType>* curr , dataType value) ;
-    Node<dataType>* getMaxHelper(Node<dataType>* curr) ;
-    Node<dataType>* getMinHelper(Node<dataType>* curr) ;
-    void clearHelper(Node<dataType>* curr) ;
+
 
 public:
+    // Constructor and destructor
     RedBlackTree();
     ~RedBlackTree();
+
+    // Public functions
+    void insert(dataType value) ;
+    void remove(dataType value) ;
+    void clear();
     void printInOrder();
     void printInPreOrder();
     void printInPostOrder();
-    void insert(dataType value) ;
-    void clear() ;
 
 };
 
