@@ -22,13 +22,14 @@ template<class dataType , int ORDER>
 class BTree {
 private:
 
-    BTree<dataType , ORDER>* root ;
+    Node<dataType , ORDER>* root ;
     void insertHelper(Node<dataType , ORDER> * curr , dataType val);
     void removeHelper(Node<dataType , ORDER> * curr );
-    BTree<dataType , ORDER> * searchHelper(Node<dataType , ORDER> * curr , dataType val);
+    Node<dataType , ORDER> * searchHelper(Node<dataType , ORDER> * curr , dataType val);
     dataType successorHelper(Node<dataType , ORDER>* curr , dataType val);
     void splitChild(Node<dataType , ORDER> * curr, int i) ;
     void clearHelper(Node<dataType , ORDER> * curr);
+
 
 
 public:
