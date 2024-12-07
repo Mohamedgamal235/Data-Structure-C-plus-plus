@@ -20,9 +20,35 @@ SkipList::~SkipList() {
 }
 
 void SkipList::insert(int val) {
+    Node* curr = header ;
 
+    vector<Node*> newHeader(maxLevel + 1 , nullptr );
+
+    for (int i = level ; i >= 0 ; i--) {
+        while (curr->forward[i] && curr->forward[i]->key < val)
+            curr = curr->forward[i];
+        newHeader[i] = curr ;
+    }
+
+    curr = curr->forward[0];
+
+    if (!curr || curr->key != val) {
+        int newLevel = randomLevel();
+
+        if (newLevel > level) { // update arr
+            for (int i = level + 1 ; i <= newLevel ; i++)
+                newHeader[i] = header ;
+            level = newLevel ;
+        }
+
+        Node* newNode = new Node(val , newLevel);
+
+        for (int i = 0 ; i <= newLevel ; i++) {
+            newNode->forward[i] = newHeader[i]->forward[i];
+            newHeader[i]->forward[i] = newNode ;
+        }
+    }
 }
-
 
 void SkipList::remove(int val) {
 
@@ -31,7 +57,7 @@ void SkipList::remove(int val) {
 
 bool SkipList::search(int val) {
     Node* curr = header ;
-    
+
     for (int i = level ; i >= 0 ; i--) {
         while (curr->forward[i] && curr->forward[i]->key < val)
             curr = curr->forward[i];
@@ -40,8 +66,8 @@ bool SkipList::search(int val) {
 
     if (curr && curr->key == val)
         return true ;
-    
-    return false ; 
+
+    return false ;
 }
 
 
