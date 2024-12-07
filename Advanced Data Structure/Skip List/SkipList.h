@@ -20,21 +20,20 @@ struct Node {
 class SkipList {
 private:
     int maxLevel ;
-    double Probability  ;
+    double probability  ;
     int level ;
-
     Node* header ;
-
     int randomLevel(); // make random level for nodes
 
 public:
     SkipList(int maxLevel , double Probability );
     ~SkipList();
 
-    void insert(int key);
-    void remove(int key);
-    bool search(int key);
+    void insert(int val);
+    void remove(int val);
+    bool search(int val);
     void print();
+    void clear();
 
 };
 
