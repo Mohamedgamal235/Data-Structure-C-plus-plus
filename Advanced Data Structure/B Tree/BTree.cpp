@@ -62,13 +62,24 @@ void BTree<dataType, ORDER>::splitChild(Node<dataType, ORDER> *parent, int idx) 
 
 
     parent->keys[idx] = fullChild->keys[ORDER / 2 - 1] ;
-    parent->numOfKeys++ ; 
+    parent->numOfKeys++ ;
 }
 
 
+template<class dataType, int ORDER>
+Node<dataType, ORDER> *BTree<dataType, ORDER>::searchHelper(Node<dataType, ORDER> *curr, dataType val) {
+    int idx = 0 ;
+    while (idx < curr->numOfKeys && val > curr->keys[idx])
+        idx++ ;
 
+    if (idx < curr->numOfKeys && val == curr->keys[idx])
+        return curr ;
 
+    if (curr->isLeaf)
+        return nullptr ;
 
+    return searchHelper(curr->children[idx] , val) ;
+}
 
 
 
@@ -110,7 +121,14 @@ void BTree<dataType, ORDER>::remove() {
 
 template<class dataType, int ORDER>
 dataType BTree<dataType, ORDER>::search(dataType val) {
+    if(!root)
+        return dataType();
 
+    Node<dataType , ORDER>* res = searchHelper(root , val);
+    if(res == nullptr)
+        return dataType();
+
+    return val ;
 }
 
 template<class dataType, int ORDER>
