@@ -25,8 +25,8 @@ private:
     Node<dataType , ORDER>* root ;
     void insertHelper(Node<dataType , ORDER> * curr , dataType val);
     void removeHelper(Node<dataType , ORDER> * curr );
-    Node<dataType , ORDER> * searchHelper(Node<dataType , ORDER> * curr , dataType val);
-    dataType successorHelper(Node<dataType , ORDER>* curr , dataType val);
+    Node<dataType , ORDER>* searchHelper(Node<dataType , ORDER> * curr , dataType val);
+    dataType successorHelper(Node<dataType , ORDER>* curr , int i);
     void splitChild(Node<dataType , ORDER> * curr, int i) ;
     void clearHelper(Node<dataType , ORDER> * curr);
 
