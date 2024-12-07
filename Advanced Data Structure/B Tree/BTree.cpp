@@ -81,6 +81,13 @@ Node<dataType, ORDER> *BTree<dataType, ORDER>::searchHelper(Node<dataType, ORDER
     return searchHelper(curr->children[idx] , val) ;
 }
 
+template<class dataType, int ORDER>
+dataType BTree<dataType, ORDER>::successorHelper(Node<dataType, ORDER> *node, int i) {
+    Node<dataType , ORDER>* curr = node->children[i + 1] ;
+    while (!curr->isLeaf)
+        curr = curr->children[curr->numOfKeys];
+    return curr->keys[0];
+}
 
 
 
