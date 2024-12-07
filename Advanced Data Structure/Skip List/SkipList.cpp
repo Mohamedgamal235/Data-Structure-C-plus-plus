@@ -51,7 +51,33 @@ void SkipList::insert(int val) {
 }
 
 void SkipList::remove(int val) {
+    Node* curr = header ;
+    vector<Node*> newHeader(maxLevel + 1 , nullptr);
 
+
+    for (int i = level ; i >= 0 ; i--) {
+        while (curr->forward[i] && curr->forward[i]->key < val)
+            curr = curr->forward[i];
+        newHeader[i] = curr ;
+    }
+
+    curr = curr->forward[0] ;
+
+    if (curr && curr->key == val) {
+        for (int i = 0 ; i <= level ; i++) {
+            if(newHeader[i]->forward[i] != curr)
+                break;
+            newHeader[i]->forward[i] = curr->forward[i] ;
+        }
+
+        delete curr ;
+
+        while (level > 0 && !header->forward[level])
+            level-- ;
+
+    }
+    else
+        cout <<"Key Not Found to remove!\n" ;
 }
 
 
@@ -72,7 +98,16 @@ bool SkipList::search(int val) {
 
 
 void SkipList::print() {
-
+    cout << "\n***** Skip List *****\n";
+    for (int i = 0; i <= level; i++) {
+        Node* node = header->forward[i];
+        cout << "Level " << i << ": ";
+        while (node) {
+            cout << node->key << " ";
+            node = node->forward[i];
+        }
+        cout << "\n";
+    }
 }
 
 
@@ -83,6 +118,8 @@ void SkipList::clear() {
         delete curr ;
         curr = next ;
     }
+    header = new Node(-1, maxLevel);
+    level = 0;
 }
 
 
