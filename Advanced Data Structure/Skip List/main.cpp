@@ -4,24 +4,23 @@ using namespace std ;
 
 
 int main() {
-    srand(time(0));
+    // srand(time(0));
 
     SkipList skiplist(3, 0.5);
 
-    skiplist.insert(3);
-    skiplist.insert(6);
-    skiplist.insert(7);
-    skiplist.insert(9);
-    skiplist.insert(12);
-    skiplist.insert(19);
-    skiplist.insert(25);
-
+    skiplist.insert(10);
+    skiplist.insert(2);
+    skiplist.insert(15);
+    skiplist.insert(31);
+    skiplist.insert(96);
+    skiplist.insert(16);
     skiplist.print();
 
-    skiplist.search(19);
-    skiplist.search(15);
-
-    skiplist.remove(19);
+    skiplist.insert(71);
+    skiplist.insert(87);
+    skiplist.print();
+    skiplist.remove(71);
+    skiplist.print();
     skiplist.print();
 
     return 0;
